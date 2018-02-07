@@ -18,7 +18,7 @@ public class ReaderController {
 	
 	@RequestMapping("/readers/logins/{readerLogin}")
 	public Reader getReaderByLogin(@PathVariable String readerLogin) {
-		return readerService.getReaderByLogin(readerLogin);
+		return readerService.getReaderByUsername(readerLogin);
 	}
 	
 	@RequestMapping("/readers/{readerId}")

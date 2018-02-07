@@ -12,8 +12,8 @@ public class ReaderService {
 	@Autowired
 	ReaderRepository readerRepository;
 	
-	public Reader getReaderByLogin(String readerLogin) {
-		return readerRepository.findOneByLogin(readerLogin);
+	public Reader getReaderByUsername(String readerLogin) {
+		return readerRepository.findOneByUsername(readerLogin);
 	}
 
 	public Reader getReaderById(int readerId) {

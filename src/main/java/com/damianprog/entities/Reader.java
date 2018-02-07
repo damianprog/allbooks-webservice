@@ -25,8 +25,8 @@ public class Reader {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="login")
-	private String login;
+	@Column(name="username")
+	private String username;
 	
 	@Column(name="password")
 	private String password;
@@ -58,12 +58,12 @@ public class Reader {
 		this.id = id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -84,7 +84,7 @@ public class Reader {
 
 	@Override
 	public String toString() {
-		return "Reader [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + "]";
+		return "Reader [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
 	
 }
