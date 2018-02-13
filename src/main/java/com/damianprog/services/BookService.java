@@ -26,6 +26,10 @@ public class BookService {
 		return bookRepository.findOne(bookId);
 	}
 
+	public void saveBook(Book book) {
+		bookRepository.save(book);
+	}
+
 	
 	
 }

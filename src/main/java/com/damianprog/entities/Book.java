@@ -27,6 +27,9 @@ public class Book {
 	@Column(name="title")
 	private String title;
 
+	@Column(name="miniTitle")
+	private String miniTitle;
+	
 	@Column(name="full_title")
 	private String fullTitle;
 
@@ -63,6 +66,14 @@ public class Book {
 	
 	@Column(name="buy_book")
 	private String buyBook;
+
+	public String getMiniTitle() {
+		return miniTitle;
+	}
+
+	public void setMiniTitle(String miniTitle) {
+		this.miniTitle = miniTitle;
+	}
 
 	public byte[] getBookPhoto() {
 		return bookPhoto;
