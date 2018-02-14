@@ -1,46 +1,71 @@
 package com.damianprog.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="review")
+@Table(name = "review")
 public class Review {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="text")
+
+	@Column(name = "text")
 	private String text;
-	
-	@Column(name="title")
+
+	@Column(name = "title")
 	private String title;
-	
-	@Column(name="likes")
+
+	@Column(name = "likes")
 	private int likes;
-	
-	@Column(name="readerLogin")
+
+	@Column(name = "readerLogin")
 	private String readerLogin;
-	
-	@Column(name="readerRating")
+
+	@Column(name = "reader_identity") // to further refactor
+	private int readerIdentity;
+
+	@Column(name = "readerRating")
 	private int readerRating;
-	
-	@Column(name="readerId")
-	private int readerId;
-	
-	@Column(name="bookId")
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "review_id")
+	private List<Comment> comments;
+
+	@Column(name = "bookId")
 	private int bookId;
 
 	public Review() {
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public int getReaderIdentity() {
+		return readerIdentity;
+	}
+
+	public void setReaderIdentity(int readerIdentity) {
+		this.readerIdentity = readerIdentity;
 	}
 
 	public int getId() {
@@ -57,14 +82,6 @@ public class Review {
 
 	public void setText(String text) {
 		this.text = text;
-	}
-
-	public int getReaderId() {
-		return readerId;
-	}
-
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
 	}
 
 	public int getBookId() {
@@ -106,5 +123,5 @@ public class Review {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
-	
+
 }

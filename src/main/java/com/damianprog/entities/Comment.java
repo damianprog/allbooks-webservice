@@ -9,30 +9,49 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="comment")
+@Table(name = "comment")
 public class Comment {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="text")
+
+	@Column(name = "text")
 	private String text;
-	
-	@Column(name="readerLogin")
+
+	@Column(name = "readerLogin")
 	private String readerLogin;
-	
-	@Column(name="readerId")
+
+	@Column(name = "readerId")
 	private int readerId;
+
+	@Column(name="review_identity")
+	private int reviewIdentity;
 	
-	@Column(name="reviewId")
+	@Column(name = "review_id")
 	private int reviewId;
-	
-	@Column(name="readerRating")
+
+	@Column(name = "readerRating")
 	private int readerRating;
+	
+	public int getReviewIdentity() {
+		return reviewIdentity;
+	}
+
+	public void setReviewIdentity(int reviewIdentity) {
+		this.reviewIdentity = reviewIdentity;
+	}
+
+	public int getReviewId() {
+		return reviewId;
+	}
+
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
+	}
 
 	public int getId() {
 		return id;
@@ -66,14 +85,6 @@ public class Comment {
 		this.readerId = readerId;
 	}
 
-	public int getReviewId() {
-		return reviewId;
-	}
-
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
-
 	public int getReaderRating() {
 		return readerRating;
 	}
@@ -81,5 +92,5 @@ public class Comment {
 	public void setReaderRating(int readerRating) {
 		this.readerRating = readerRating;
 	}
-	
+
 }

@@ -33,9 +33,10 @@ public class ReviewController {
 		reviewService.postReview(review);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/reviews/{reviewId}")
-	public void updateReview(@RequestBody Review review,@PathVariable int reviewId) {
+	@RequestMapping(method=RequestMethod.PUT,value="/reviews")
+	public void updateReview(@RequestBody Review review) {
 		reviewService.updateReview(review);
 	}
+	
 	
 }
