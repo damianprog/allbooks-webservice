@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.damianprog.entities.Reader;
 import com.damianprog.entities.Review;
+import com.damianprog.services.ReaderService;
 import com.damianprog.services.ReviewService;
 
 @RestController
@@ -17,6 +19,9 @@ public class ReviewController {
 
 	@Autowired
 	ReviewService reviewService;
+	
+	@Autowired
+	ReaderService readerService;
 	
 	@RequestMapping("/books/{bookId}/reviews")
 	public List<Review> getAllBookReviews(@PathVariable int bookId) {
@@ -30,6 +35,11 @@ public class ReviewController {
 	
 	@RequestMapping(method=RequestMethod.POST,value="/reviews")
 	public void postReview(@RequestBody Review review) {
+		
+		Reader reader = readerService.getReaderById(review.getReaderIdentity());
+		
+		review.setReader(reader);
+		
 		reviewService.postReview(review);
 	}
 	
@@ -38,5 +48,8 @@ public class ReviewController {
 		reviewService.updateReview(review);
 	}
 	
-	
+	@RequestMapping(method=RequestMethod.DELETE,value="/reviews/{reviewId}")
+	public void deleteReview(@PathVariable int reviewId) {
+		reviewService.deleteReview(reviewId);
+	}
 }

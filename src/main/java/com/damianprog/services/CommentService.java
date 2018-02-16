@@ -17,7 +17,7 @@ public class CommentService {
 	CommentRepository commentReposiotry;
 	
 	public List<Comment> getReviewComments(int reviewId) {
-		return commentReposiotry.findAllByReviewIdentity(reviewId);
+		return commentReposiotry.findAllByReviewId(reviewId);
 	}
 
 	public void postComment(Comment comment) {

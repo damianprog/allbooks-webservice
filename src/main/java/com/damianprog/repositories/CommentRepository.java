@@ -8,5 +8,5 @@ import com.damianprog.entities.Comment;
 
 public interface CommentRepository extends CrudRepository<Comment,Integer> {
 
-	List<Comment> findAllByReviewIdentity(int reviewId);
+	List<Comment> findAllByReviewId(int reviewId);
 }

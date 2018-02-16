@@ -24,5 +24,9 @@ public class ReaderService {
 		readerRepository.save(reader);
 		
 	}
+
+	public void deleteReaderById(int readerId) {
+		readerRepository.delete(readerId);
+	}
 	
 }

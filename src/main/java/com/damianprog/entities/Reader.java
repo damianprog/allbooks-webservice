@@ -6,51 +6,78 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="reader")
+@Table(name = "reader")
 public class Reader {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="username")
+
+	@Column(name = "username")
 	private String username;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "reader_role", joinColumns = @JoinColumn(name = "reader_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="details_id")
+
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "details_id")
 	private Details details;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="reader_id")
+
+	@OneToMany(mappedBy = "reader", cascade = CascadeType.ALL)
+	@JsonManagedReference
 	private List<Review> reviews;
-	
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "reader_id")
+	@JsonManagedReference
+	private List<Rating> ratings;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "reader_id")
+	@JsonManagedReference
+	private List<ReaderBook> readerBooks;
+
+	public List<ReaderBook> getReaderBooks() {
+		return readerBooks;
+	}
+
+	public void setReaderBooks(List<ReaderBook> readerBooks) {
+		this.readerBooks = readerBooks;
+	}
+
+	public List<Rating> getRatings() {
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings) {
+		this.ratings = ratings;
+	}
+
 	public List<Review> getReviews() {
 		return reviews;
 	}
@@ -75,8 +102,8 @@ public class Reader {
 		this.roles = roles;
 	}
 
-	public Reader(){
-		
+	public Reader() {
+
 	}
 
 	public int getId() {
@@ -115,5 +142,5 @@ public class Reader {
 	public String toString() {
 		return "Reader [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
-	
+
 }

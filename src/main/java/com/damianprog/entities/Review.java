@@ -9,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -36,7 +39,13 @@ public class Review {
 	@Column(name = "readerLogin")
 	private String readerLogin;
 
-	@Column(name = "reader_identity") // to further refactor
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+			 CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinColumn(name = "reader_id")
+	@JsonBackReference
+	private Reader reader;
+
+	@Column(name="reader_identity")
 	private int readerIdentity;
 
 	@Column(name = "readerRating")
@@ -52,20 +61,28 @@ public class Review {
 	public Review() {
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
 	public int getReaderIdentity() {
 		return readerIdentity;
 	}
 
 	public void setReaderIdentity(int readerIdentity) {
 		this.readerIdentity = readerIdentity;
+	}
+
+	public Reader getReader() {
+		return reader;
+	}
+
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	public int getId() {

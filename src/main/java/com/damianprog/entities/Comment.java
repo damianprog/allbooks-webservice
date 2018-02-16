@@ -27,23 +27,12 @@ public class Comment {
 
 	@Column(name = "readerId")
 	private int readerId;
-
-	@Column(name="review_identity")
-	private int reviewIdentity;
 	
 	@Column(name = "review_id")
 	private int reviewId;
 
 	@Column(name = "readerRating")
 	private int readerRating;
-	
-	public int getReviewIdentity() {
-		return reviewIdentity;
-	}
-
-	public void setReviewIdentity(int reviewIdentity) {
-		this.reviewIdentity = reviewIdentity;
-	}
 
 	public int getReviewId() {
 		return reviewId;

@@ -36,4 +36,9 @@ public class ReaderController {
 		readerService.saveReader(reader);
 	}
 	
+	@RequestMapping(method=RequestMethod.DELETE,value="/readers/{readerId}")
+	public void deleteReaderById(@PathVariable int readerId) {
+		 readerService.deleteReaderById(readerId);
+	}
+	
 }
