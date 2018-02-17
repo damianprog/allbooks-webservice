@@ -6,7 +6,6 @@ import com.damianprog.entities.ProfilePics;
 
 public interface ProfilepicsRepository extends CrudRepository<ProfilePics,Integer> {
 
-	ProfilePics findOneByReaderId(int readerId);
 
 	
 }

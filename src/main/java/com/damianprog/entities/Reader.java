@@ -37,6 +37,10 @@ public class Reader {
 	@Column(name = "password")
 	private String password;
 
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name = "profile_pics_id")
+	private ProfilePics profilePics;
+	
 	@Column(name = "email")
 	private String email;
 	
@@ -61,6 +65,14 @@ public class Reader {
 	@JoinColumn(name = "reader_id")
 	@JsonManagedReference
 	private List<ReaderBook> readerBooks;
+	
+	public ProfilePics getProfilePics() {
+		return profilePics;
+	}
+
+	public void setProfilePics(ProfilePics profilePics) {
+		this.profilePics = profilePics;
+	}
 
 	public List<ReaderBook> getReaderBooks() {
 		return readerBooks;

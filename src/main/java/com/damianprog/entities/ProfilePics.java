@@ -17,20 +17,9 @@ public class ProfilePics {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "reader_id")
-	private int readerId;
-
 	@Lob
 	@Column(name = "pic")
 	private byte[] pic;
-
-	public int getReaderId() {
-		return readerId;
-	}
-
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
-	}
 
 	public ProfilePics() {
 	}

@@ -16,8 +16,4 @@ public class ProfilepicsService {
 		profilepicsRepository.save(profilepics);
 	}
 
-	public ProfilePics getProfilePicsByReaderId(int readerId) {
-		return profilepicsRepository.findOneByReaderId(readerId);
-	}
-	
 }

@@ -21,9 +21,5 @@ public class ProfilePicsController {
 		profilepicsService.saveProfilepics(profilePics);
 	}
 	
-	@RequestMapping("/readers/{readerId}/profilepics")
-	public ProfilePics getProfilePics(@PathVariable int readerId) {
-		return profilepicsService.getProfilePicsByReaderId(readerId);
-	}
 	
 }
