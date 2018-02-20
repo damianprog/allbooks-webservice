@@ -3,7 +3,9 @@ package com.damianprog.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.damianprog.entities.Pending;
 import com.damianprog.entities.Reader;
+import com.damianprog.repositories.PendingRepository;
 import com.damianprog.repositories.ReaderRepository;
 
 @Service

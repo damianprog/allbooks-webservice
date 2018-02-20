@@ -19,10 +19,10 @@ public class Friends {
 	@Column(name="id")
 	private int id;
 	
-	@Column(name="reader1")
+	@Column(name="reader_1")
 	private int reader1;
 	
-	@Column(name="reader2")
+	@Column(name="reader_2")
 	private int reader2;
 
 	@Column(name="reader1_login")
@@ -30,9 +30,6 @@ public class Friends {
 	
 	@Column(name="reader2_login")
 	private String reader2Login;
-	
-	@Column(name="accept")
-	private String accept;
 	
 	public int getId() {
 		return id;
@@ -56,14 +53,6 @@ public class Friends {
 
 	public void setReader2(int reader2) {
 		this.reader2 = reader2;
-	}
-
-	public String getAccept() {
-		return accept;
-	}
-
-	public void setAccept(String accept) {
-		this.accept = accept;
 	}
 
 	public String getReader1Login() {

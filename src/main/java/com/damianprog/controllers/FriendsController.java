@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.Friends;
+import com.damianprog.entities.Pending;
 import com.damianprog.services.FriendsService;
 
 @RestController
@@ -37,8 +38,31 @@ public class FriendsController {
 	
 	@RequestMapping(method=RequestMethod.DELETE,value="/friends/{friendsId}")
 	public void deleteFriends(@PathVariable("friendsId") int id) {
-		friendsService.deleteFriends(id);
-		
+		friendsService.deleteFriendsById(id);
 	}
 	
+	@RequestMapping(method=RequestMethod.DELETE,value="/readers/{reader1Id}/friends/{reader2Id}")
+	public void deleteFriends(@PathVariable("reader1Id") int reader1Id,@PathVariable("reader2Id") int reader2Id) {
+		friendsService.deleteFriendsByReadersIds(reader1Id,reader2Id);
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value="/friends/pending")
+	public void savePending(@RequestBody Pending pending) {
+		friendsService.savePending(pending);
+	}
+	
+	@RequestMapping("/readers/{reader1}/friends/{reader2}/pending")
+	public Pending getPending(@PathVariable("reader1") int reader1,@PathVariable("reader2") int reader2) {
+		return friendsService.getPending(reader1,reader2);
+	}
+	
+	@RequestMapping("/readers/{readerId}/friends/pending")
+	public List<Pending> getReaderPendings(@PathVariable int readerId){
+		return friendsService.getReaderPendings(readerId);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE,value="/pending/{pendingId}")
+	public void deletePending(@PathVariable("pendingId") int pendingId) {
+		friendsService.deletePending(pendingId);
+	}
 }

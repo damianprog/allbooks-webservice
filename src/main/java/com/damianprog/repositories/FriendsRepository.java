@@ -13,4 +13,6 @@ public interface FriendsRepository extends CrudRepository<Friends,Integer> {
 	@Query("select f from Friends f where f.reader1=:readerId or f.reader2=:readerId")
 	List<Friends> findAllReaderFriends(@Param("readerId") int readerId);
 	
+	void deleteByReader1AndReader2(int reader1,int reader2);
+	
 }

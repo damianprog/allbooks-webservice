@@ -37,18 +37,22 @@ public class Reader {
 	@Column(name = "password")
 	private String password;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "profile_pics_id")
 	private ProfilePics profilePics;
-	
+
 	@Column(name = "email")
 	private String email;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "reader_role", joinColumns = @JoinColumn(name = "reader_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "reader_1"), inverseJoinColumns = @JoinColumn(name = "reader_2"))
+	private List<Reader> friends;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "details_id")
 	private Details details;
 
@@ -65,7 +69,15 @@ public class Reader {
 	@JoinColumn(name = "reader_id")
 	@JsonManagedReference
 	private List<ReaderBook> readerBooks;
-	
+
+	public List<Reader> getFriends() {
+		return friends;
+	}
+
+	public void setFriends(List<Reader> friends) {
+		this.friends = friends;
+	}
+
 	public ProfilePics getProfilePics() {
 		return profilePics;
 	}
