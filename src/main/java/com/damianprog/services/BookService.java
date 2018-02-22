@@ -18,7 +18,7 @@ public class BookService {
 	BookRepository bookRepository;
 
 	public Book getBookByTitle(String title) {
-		return bookRepository.findOneByTitle(title);
+		return bookRepository.findOneByMiniTitle(title);
 	}
 
 	public Book getBookById(int bookId) {

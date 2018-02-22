@@ -23,9 +23,6 @@ public class Book {
 	@Lob
 	@Column(name="book_photo")
 	private byte[] bookPhoto;
-	
-	@Column(name="title")
-	private String title;
 
 	@Column(name="miniTitle")
 	private String miniTitle;
@@ -172,14 +169,6 @@ public class Book {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getAuthor() {

@@ -57,7 +57,7 @@ public class FriendsService {
 
 	@Transactional
 	public void deleteFriendsByReadersIds(int reader1, int reader2) {
-		friendsRepository.deleteByReader1AndReader2(reader1, reader2);
+		friendsRepository.deleteByReader1AndReader2(reader1,reader2);
 	}
 
 }

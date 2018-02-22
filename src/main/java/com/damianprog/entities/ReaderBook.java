@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -33,6 +34,10 @@ public class ReaderBook {
 	@Column(name = "fullbook_name")
 	private String fullBookName;
 
+	@Lob
+	@Column(name = "book_pic")
+	private byte[] bookPic;
+
 	@Column(name = "author")
 	private String author;
 
@@ -58,6 +63,14 @@ public class ReaderBook {
 
 	@Column(name = "date_added")
 	private String dateAdded;
+
+	public byte[] getBookPic() {
+		return bookPic;
+	}
+
+	public void setBookPic(byte[] bookPic) {
+		this.bookPic = bookPic;
+	}
 
 	public int getId() {
 		return id;
