@@ -24,12 +24,6 @@ public class Friends {
 	
 	@Column(name="reader_2")
 	private int reader2;
-
-	@Column(name="reader1_login")
-	private String reader1Login;
-	
-	@Column(name="reader2_login")
-	private String reader2Login;
 	
 	public int getId() {
 		return id;
@@ -53,21 +47,5 @@ public class Friends {
 
 	public void setReader2(int reader2) {
 		this.reader2 = reader2;
-	}
-
-	public String getReader1Login() {
-		return reader1Login;
-	}
-
-	public void setReader1Login(String reader1Login) {
-		this.reader1Login = reader1Login;
-	}
-
-	public String getReader2Login() {
-		return reader2Login;
-	}
-
-	public void setReader2Login(String reader2Login) {
-		this.reader2Login = reader2Login;
 	}
 }

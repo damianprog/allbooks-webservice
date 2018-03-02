@@ -37,6 +37,9 @@ public class Reader {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "enabled")
+	private String enabled;
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "profile_pics_id")
 	private ProfilePics profilePics;
@@ -44,14 +47,14 @@ public class Reader {
 	@Column(name = "email")
 	private String email;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = {CascadeType.DETACH,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE})
 	@JoinTable(name = "reader_role", joinColumns = @JoinColumn(name = "reader_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "friends", joinColumns = @JoinColumn(name = "reader_1"), inverseJoinColumns = @JoinColumn(name = "reader_2"))
 	private List<Reader> friends;
-	
+
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "details_id")
 	private Details details;
@@ -69,6 +72,14 @@ public class Reader {
 	@JoinColumn(name = "reader_id")
 	@JsonManagedReference
 	private List<ReaderBook> readerBooks;
+
+	public String getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
+	}
 
 	public List<Reader> getFriends() {
 		return friends;
