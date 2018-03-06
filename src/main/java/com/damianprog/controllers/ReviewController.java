@@ -28,6 +28,11 @@ public class ReviewController {
 		return reviewService.getAllBookReviews(bookId);
 	}
 	
+	@RequestMapping("/readers/{username}/books/reviews")
+	public List<Review> getReaderReviews(@PathVariable String username){
+		return reviewService.getReaderReviews(username);
+	}
+	
 	@RequestMapping("/reviews/{reviewId}")
 	public Review getReviewById(@PathVariable int reviewId) {
 		return reviewService.getReviewById(reviewId);

@@ -56,4 +56,9 @@ public class ReaderBookController {
 		readerbookService.saveReaderBook(readerBook);
 	}
 
+	@RequestMapping(method = RequestMethod.DELETE, value = "/readerbooks/{readerBookId}")
+	public void deleteReaderBookById(@PathVariable int readerBookId) {
+		readerbookService.deleteReaderBookById(readerBookId);
+	}
+	
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.damianprog.entities.PasswordToken;
 import com.damianprog.entities.Reader;
 import com.damianprog.entities.VerificationToken;
 import com.damianprog.services.ReaderService;
@@ -29,6 +30,11 @@ public class ReaderController {
 		return readerService.getReaderById(readerId);
 	}
 
+	@RequestMapping("/readers/emails/{email}")
+	public Reader getReaderByEmail(@PathVariable String email) {
+		return readerService.getReaderByEmail(email);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/readers")
 	public void saveReader(@RequestBody Reader reader) {
 		readerService.saveReader(reader);
@@ -48,15 +54,35 @@ public class ReaderController {
 	public void saveVerificationToken(@RequestBody VerificationToken token) {
 		readerService.saveVerificationToken(token);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, value = "/readers/passwordTokens")
+	public void savePasswordToken(@RequestBody PasswordToken token) {
+		readerService.savePasswordToken(token);
+	}
 
-	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/verificationTokens/{tokenId}")
+	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/{readerId}/verificationTokens/{tokenId}")
 	public void deleteVerificationToken(@PathVariable int tokenId) {
 		readerService.deleteVerificationToken(tokenId);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/{readerId}/passwordTokens")
+	public void deletePasswordToken(@PathVariable int readerId) {
+		readerService.deletePasswordToken(readerId);
 	}
 	
 	@RequestMapping("/readers/{readerId}/verificationTokens")
 	public VerificationToken getToken(@PathVariable int readerId) {
 		return readerService.getTokenByReaderId(readerId);
+	}
+	
+	@RequestMapping("/readers/{readerId}/passwordTokens/{passwordToken}")
+	public PasswordToken getPasswordTokenByCredentials(@PathVariable int readerId,@PathVariable String passwordToken) {
+		return readerService.getPasswordTokenByCredentials(readerId,passwordToken);
+	}
+	
+	@RequestMapping("/readers/{readerId}/passwordTokens")
+	public PasswordToken getPasswordToken(@PathVariable int readerId) {
+		return readerService.getPasswordTokenByReaderId(readerId);
 	}
 	
 }

@@ -28,5 +28,10 @@ public class ReaderbookService {
 		readerbookRepository.save(readerBook);
 		
 	}
+
+	public void deleteReaderBookById(int readerBookId) {
+		readerbookRepository.delete(readerBookId);
+		
+	}
 	
 }

@@ -24,7 +24,7 @@ public class Book {
 	@Column(name="book_photo")
 	private byte[] bookPhoto;
 
-	@Column(name="miniTitle")
+	@Column(name="mini_title")
 	private String miniTitle;
 	
 	@Column(name="full_title")

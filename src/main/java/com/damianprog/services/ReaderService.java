@@ -1,12 +1,14 @@
 package com.damianprog.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.damianprog.entities.Pending;
+import com.damianprog.entities.PasswordToken;
 import com.damianprog.entities.Reader;
 import com.damianprog.entities.VerificationToken;
-import com.damianprog.repositories.PendingRepository;
+import com.damianprog.repositories.PasswordTokenRepository;
 import com.damianprog.repositories.ReaderRepository;
 import com.damianprog.repositories.TokenRepository;
 
@@ -18,6 +20,9 @@ public class ReaderService {
 	
 	@Autowired
 	TokenRepository tokenRepository;
+	
+	@Autowired
+	PasswordTokenRepository passwordTokenRepository;
 	
 	public Reader getReaderByUsername(String readerLogin) {
 		return readerRepository.findOneByUsername(readerLogin);
@@ -44,8 +49,29 @@ public class ReaderService {
 		tokenRepository.delete(tokenId);
 	}
 
+	public Reader getReaderByEmail(String email) {
+		return readerRepository.findOneByEmail(email);
+	}
+	
 	public VerificationToken getTokenByReaderId(int readerId) {
 		return tokenRepository.findOneByReaderId(readerId);
+	}
+
+	public PasswordToken getPasswordTokenByReaderId(int readerId) {
+		return passwordTokenRepository.findOneByReaderId(readerId);
+	}
+
+	public void savePasswordToken(PasswordToken token) {
+		passwordTokenRepository.save(token);
+	}
+
+	public PasswordToken getPasswordTokenByCredentials(int readerId, String passwordToken) {
+		return passwordTokenRepository.findOneByReaderIdAndToken(readerId, passwordToken);
+	}
+
+	@Transactional
+	public void deletePasswordToken(int readerId) {
+		passwordTokenRepository.deleteByReaderId(readerId);
 	}
 	
 }

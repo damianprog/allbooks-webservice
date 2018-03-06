@@ -33,19 +33,21 @@ public class Review {
 	@Column(name = "title")
 	private String title;
 
+	@Column(name = "book_title")
+	private String bookTitle;
+
 	@Column(name = "likes")
 	private int likes;
 
 	@Column(name = "readerLogin")
 	private String readerLogin;
 
-	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-			 CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
 	@JoinColumn(name = "reader_id")
 	@JsonBackReference
 	private Reader reader;
 
-	@Column(name="reader_identity")
+	@Column(name = "reader_identity")
 	private int readerIdentity;
 
 	@Column(name = "readerRating")
@@ -59,6 +61,14 @@ public class Review {
 	private int bookId;
 
 	public Review() {
+	}
+
+	public String getBookTitle() {
+		return bookTitle;
+	}
+
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
 	}
 
 	public int getReaderIdentity() {
