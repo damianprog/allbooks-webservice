@@ -5,14 +5,15 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -50,8 +51,9 @@ public class Review {
 	@Column(name = "reader_identity")
 	private int readerIdentity;
 
-	@Column(name = "readerRating")
-	private int readerRating;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "rating_id")
+	private Rating rating;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "review_id")
@@ -61,6 +63,14 @@ public class Review {
 	private int bookId;
 
 	public Review() {
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
 	public String getBookTitle() {
@@ -133,14 +143,6 @@ public class Review {
 
 	public void setReaderLogin(String readerLogin) {
 		this.readerLogin = readerLogin;
-	}
-
-	public int getReaderRating() {
-		return readerRating;
-	}
-
-	public void setReaderRating(int readerRating) {
-		this.readerRating = readerRating;
 	}
 
 	public int getLikes() {

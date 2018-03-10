@@ -3,6 +3,7 @@ package com.damianprog.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,16 +42,7 @@ public class ReaderBook {
 	@Column(name = "author")
 	private String author;
 
-	@Column(name = "rating")
-	private double rating;
-
-	@Transient
-	private int readerRating;
-
-	@Column(name = "reader_identity")
-	private int readerIdentity;
-
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "reader_id")
 	@JsonBackReference
 	private Reader reader;
@@ -76,6 +68,10 @@ public class ReaderBook {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public Reader getReader() {
 		return reader;
 	}
@@ -84,24 +80,12 @@ public class ReaderBook {
 		this.reader = reader;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public int getBookId() {
 		return bookId;
 	}
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
-	}
-
-	public int getReaderIdentity() {
-		return readerIdentity;
-	}
-
-	public void setReaderIdentity(int readerIdentity) {
-		this.readerIdentity = readerIdentity;
 	}
 
 	public String getShelves() {
@@ -150,22 +134,6 @@ public class ReaderBook {
 
 	public void setAuthor(String author) {
 		this.author = author;
-	}
-
-	public double getRating() {
-		return rating;
-	}
-
-	public void setRating(double rating) {
-		this.rating = rating;
-	}
-
-	public int getReaderRating() {
-		return readerRating;
-	}
-
-	public void setReaderRating(int readerRating) {
-		this.readerRating = readerRating;
 	}
 
 }

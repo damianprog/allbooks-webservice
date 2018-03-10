@@ -40,18 +40,11 @@ public class ReaderBookController {
 	@RequestMapping(method = RequestMethod.POST, value = "/readerbooks")
 	public void saveReaderBook(@RequestBody ReaderBook readerBook) {
 
-		Reader reader = readerService.getReaderById(readerBook.getReaderIdentity());
-
-		readerBook.setReader(reader);
-
 		readerbookService.saveReaderBook(readerBook);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/readerbooks")
 	public void updateReaderBook(@RequestBody ReaderBook readerBook) {
-		Reader reader = readerService.getReaderById(readerBook.getReaderIdentity());
-
-		readerBook.setReader(reader);
 		
 		readerbookService.saveReaderBook(readerBook);
 	}

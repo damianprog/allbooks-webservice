@@ -17,13 +17,7 @@ public class ReaderService {
 
 	@Autowired
 	ReaderRepository readerRepository;
-	
-	@Autowired
-	TokenRepository tokenRepository;
-	
-	@Autowired
-	PasswordTokenRepository passwordTokenRepository;
-	
+
 	public Reader getReaderByUsername(String readerLogin) {
 		return readerRepository.findOneByUsername(readerLogin);
 	}
@@ -34,44 +28,15 @@ public class ReaderService {
 
 	public void saveReader(Reader reader) {
 		readerRepository.save(reader);
-		
+
 	}
 
 	public void deleteReaderById(int readerId) {
 		readerRepository.delete(readerId);
 	}
 
-	public void saveVerificationToken(VerificationToken token) {
-		tokenRepository.save(token);
-	}
-
-	public void deleteVerificationToken(int tokenId) {
-		tokenRepository.delete(tokenId);
-	}
-
 	public Reader getReaderByEmail(String email) {
 		return readerRepository.findOneByEmail(email);
 	}
-	
-	public VerificationToken getTokenByReaderId(int readerId) {
-		return tokenRepository.findOneByReaderId(readerId);
-	}
 
-	public PasswordToken getPasswordTokenByReaderId(int readerId) {
-		return passwordTokenRepository.findOneByReaderId(readerId);
-	}
-
-	public void savePasswordToken(PasswordToken token) {
-		passwordTokenRepository.save(token);
-	}
-
-	public PasswordToken getPasswordTokenByCredentials(int readerId, String passwordToken) {
-		return passwordTokenRepository.findOneByReaderIdAndToken(readerId, passwordToken);
-	}
-
-	@Transactional
-	public void deletePasswordToken(int readerId) {
-		passwordTokenRepository.deleteByReaderId(readerId);
-	}
-	
 }

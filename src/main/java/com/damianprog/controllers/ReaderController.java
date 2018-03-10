@@ -50,39 +50,6 @@ public class ReaderController {
 		readerService.deleteReaderById(readerId);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, value = "/readers/verificationTokens")
-	public void saveVerificationToken(@RequestBody VerificationToken token) {
-		readerService.saveVerificationToken(token);
-	}
 	
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, value = "/readers/passwordTokens")
-	public void savePasswordToken(@RequestBody PasswordToken token) {
-		readerService.savePasswordToken(token);
-	}
-
-	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/{readerId}/verificationTokens/{tokenId}")
-	public void deleteVerificationToken(@PathVariable int tokenId) {
-		readerService.deleteVerificationToken(tokenId);
-	}
-	
-	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/{readerId}/passwordTokens")
-	public void deletePasswordToken(@PathVariable int readerId) {
-		readerService.deletePasswordToken(readerId);
-	}
-	
-	@RequestMapping("/readers/{readerId}/verificationTokens")
-	public VerificationToken getToken(@PathVariable int readerId) {
-		return readerService.getTokenByReaderId(readerId);
-	}
-	
-	@RequestMapping("/readers/{readerId}/passwordTokens/{passwordToken}")
-	public PasswordToken getPasswordTokenByCredentials(@PathVariable int readerId,@PathVariable String passwordToken) {
-		return readerService.getPasswordTokenByCredentials(readerId,passwordToken);
-	}
-	
-	@RequestMapping("/readers/{readerId}/passwordTokens")
-	public PasswordToken getPasswordToken(@PathVariable int readerId) {
-		return readerService.getPasswordTokenByReaderId(readerId);
-	}
 	
 }

@@ -2,9 +2,12 @@ package com.damianprog.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -25,14 +28,23 @@ public class Comment {
 	@Column(name = "readerLogin")
 	private String readerLogin;
 
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "rating_id")
+	private Rating rating;
+
 	@Column(name = "readerId")
 	private int readerId;
-	
+
 	@Column(name = "review_id")
 	private int reviewId;
 
-	@Column(name = "readerRating")
-	private int readerRating;
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
 
 	public int getReviewId() {
 		return reviewId;
@@ -72,14 +84,6 @@ public class Comment {
 
 	public void setReaderId(int readerId) {
 		this.readerId = readerId;
-	}
-
-	public int getReaderRating() {
-		return readerRating;
-	}
-
-	public void setReaderRating(int readerRating) {
-		this.readerRating = readerRating;
 	}
 
 }

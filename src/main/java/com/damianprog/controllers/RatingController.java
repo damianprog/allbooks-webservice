@@ -37,11 +37,6 @@ public class RatingController {
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/ratings")
 	public void submitRating(@RequestBody Rating rating) {
-		
-		Reader reader = readerService.getReaderById(rating.getReaderIdentity());
-		
-		rating.setReader(reader);
-		
 		ratingService.submitRating(rating);
 	}
 	
