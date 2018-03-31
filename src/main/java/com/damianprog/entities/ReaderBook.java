@@ -1,6 +1,5 @@
 package com.damianprog.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -26,21 +25,17 @@ public class ReaderBook {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "bookId")
-	private int bookId;
-
-	@Column(name = "minbook_name")
-	private String minBookName;
-
-	@Column(name = "fullbook_name")
-	private String fullBookName;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "book_id")
+	private Book book;
 
 	@Lob
 	@Column(name = "book_pic")
 	private byte[] bookPic;
 
-	@Column(name = "author")
-	private String author;
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "reader_rating_id")
+	private Rating readerRating;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "reader_id")
@@ -64,6 +59,14 @@ public class ReaderBook {
 		this.bookPic = bookPic;
 	}
 
+	public Rating getReaderRating() {
+		return readerRating;
+	}
+
+	public void setReaderRating(Rating readerRating) {
+		this.readerRating = readerRating;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -80,12 +83,12 @@ public class ReaderBook {
 		this.reader = reader;
 	}
 
-	public int getBookId() {
-		return bookId;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public String getShelves() {
@@ -110,30 +113,6 @@ public class ReaderBook {
 
 	public void setDateAdded(String dateAdded) {
 		this.dateAdded = dateAdded;
-	}
-
-	public String getMinBookName() {
-		return minBookName;
-	}
-
-	public void setMinBookName(String minBookName) {
-		this.minBookName = minBookName;
-	}
-
-	public String getFullBookName() {
-		return fullBookName;
-	}
-
-	public void setFullBookName(String fullBookName) {
-		this.fullBookName = fullBookName;
-	}
-
-	public String getAuthor() {
-		return author;
-	}
-
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 
 }

@@ -10,59 +10,70 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="book")
+@Table(name = "book")
 public class Book {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
+
 	@Lob
-	@Column(name="book_photo")
+	@Column(name = "book_photo")
 	private byte[] bookPhoto;
 
-	@Column(name="mini_title")
+	@Column(name = "mini_title")
 	private String miniTitle;
-	
-	@Column(name="full_title")
+
+	@Column(name = "full_title")
 	private String fullTitle;
 
-	@Column(name="author")
+	@Column(name = "author")
 	private String author;
-	
-	@Column(name="about_author")
+
+	@Column(name = "about_author")
 	private String aboutAuthor;
-	
+
 	@Lob
-	@Column(name="author_photo")
+	@Column(name = "author_photo")
 	private byte[] authorPhoto;
-	
-	@Column(name="review_author")
+
+	@Column(name = "review_author")
 	private String reviewAuthor;
-	
-	@Column(name="description")
+
+	@Column(name = "description")
 	private String description;
-	
-	@Column(name="book_quotes")
+
+	@Column(name = "book_quotes")
 	private String bookQuotes;
-	
-	@Column(name="cover_type")
+
+	@Column(name = "cover_type")
 	private String coverType;
-	
-	@Column(name="pages")
+
+	@Column(name = "pages")
 	private int pages;
-	
-	@Column(name="publish_date")
+
+	@Column(name = "publish_date")
 	private String publishDate;
-	
-	@Column(name="publish_company")
+
+	@Column(name = "publish_company")
 	private String publishCompany;
-	
-	@Column(name="buy_book")
+
+	@Column(name = "buy_book")
 	private String buyBook;
+
+	@Column(name = "category")
+	private String category;
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getMiniTitle() {
 		return miniTitle;
@@ -186,5 +197,5 @@ public class Book {
 	public void setFullTitle(String fullTitle) {
 		this.fullTitle = fullTitle;
 	}
-	
+
 }

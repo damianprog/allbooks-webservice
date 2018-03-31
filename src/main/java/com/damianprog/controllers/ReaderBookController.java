@@ -30,6 +30,13 @@ public class ReaderBookController {
 
 	}
 
+	@RequestMapping("/readerbooks/{readerBookId}")
+	public ReaderBook getReaderBookById(@PathVariable int readerBookId) {
+
+		return readerbookService.getReaderBookById(readerBookId);
+
+	}
+	
 	@RequestMapping("/readers/{readerId}/readerbooks")
 	public List<ReaderBook> getReaderBooks(@PathVariable int readerId) {
 
@@ -49,9 +56,9 @@ public class ReaderBookController {
 		readerbookService.saveReaderBook(readerBook);
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "/readerbooks/{readerBookId}")
-	public void deleteReaderBookById(@PathVariable int readerBookId) {
-		readerbookService.deleteReaderBookById(readerBookId);
+	@RequestMapping(method = RequestMethod.DELETE, value = "/readers/{readerId}/readerbooks/books/{bookId}")
+	public void deleteReaderBookByReaderIdAndBookId(@PathVariable int readerId,@PathVariable int bookId) {
+		readerbookService.deleteReaderBookByReaderIdAndBookId(readerId,bookId);
 	}
 	
 }

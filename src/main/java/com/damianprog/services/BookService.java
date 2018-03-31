@@ -1,15 +1,13 @@
 package com.damianprog.services;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.damianprog.entities.Book;
-import com.damianprog.entities.ErrorMessage;
 import com.damianprog.repositories.BookRepository;
+import com.damianprog.repositories.BookRepositoryJpa;
 
 @Service
 public class BookService {
@@ -17,6 +15,9 @@ public class BookService {
 	@Autowired
 	BookRepository bookRepository;
 
+	@Autowired
+	BookRepositoryJpa bookRepositoryJpa;
+	
 	public Book getBookByTitle(String title) {
 		return bookRepository.findOneByMiniTitle(title);
 	}
@@ -28,6 +29,10 @@ public class BookService {
 
 	public void saveBook(Book book) {
 		bookRepository.save(book);
+	}
+
+	public Page<Book> getBooksByCategory(String category,Pageable pageable) {
+		return bookRepositoryJpa.findAllByCategory(category,pageable);
 	}
 
 	

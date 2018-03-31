@@ -2,11 +2,10 @@ package com.damianprog.repositories;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import javax.transaction.Transactional;
 
-import com.damianprog.entities.Book;
+import org.springframework.data.repository.CrudRepository;
+
 import com.damianprog.entities.ReaderBook;
 
 public interface ReaderbookRepository extends CrudRepository<ReaderBook,Integer> {
@@ -14,4 +13,7 @@ public interface ReaderbookRepository extends CrudRepository<ReaderBook,Integer>
 	ReaderBook findOneByBookIdAndReaderId(int bookId,int readerId);
 
 	List<ReaderBook> findAllByReaderId(int readerId);
+	
+	@Transactional
+	public void deleteByReaderIdAndBookId(int readerId,int bookId);
 }

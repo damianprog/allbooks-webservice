@@ -29,9 +29,13 @@ public class ReaderbookService {
 		
 	}
 
-	public void deleteReaderBookById(int readerBookId) {
-		readerbookRepository.delete(readerBookId);
+	public void deleteReaderBookByReaderIdAndBookId(int readerId,int bookId) {
+		readerbookRepository.deleteByReaderIdAndBookId(readerId,bookId);
 		
+	}
+
+	public ReaderBook getReaderBookById(int readerBookId) {
+		return readerbookRepository.findOne(readerBookId);
 	}
 	
 }
