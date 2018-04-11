@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.damianprog.entities.ProfilePics;
+import com.damianprog.entities.ProfilePhoto;
 import com.damianprog.services.ProfilepicsService;
 
 @RestController
@@ -17,7 +17,7 @@ public class ProfilePicsController {
 	ProfilepicsService profilepicsService;
 	
 	@RequestMapping(method=RequestMethod.POST,value="/profilepics")
-	public void saveProfilepics(@RequestBody ProfilePics profilePics) {
+	public void saveProfilepics(@RequestBody ProfilePhoto profilePics) {
 		profilepicsService.saveProfilepics(profilePics);
 	}
 	

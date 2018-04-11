@@ -42,7 +42,7 @@ public class Reader {
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "profile_pics_id")
-	private ProfilePics profilePics;
+	private ProfilePhoto profilePhoto;
 
 	@Column(name = "email")
 	private String email;
@@ -89,12 +89,12 @@ public class Reader {
 		this.friends = friends;
 	}
 
-	public ProfilePics getProfilePics() {
-		return profilePics;
+	public ProfilePhoto getProfilePhoto() {
+		return profilePhoto;
 	}
 
-	public void setProfilePics(ProfilePics profilePics) {
-		this.profilePics = profilePics;
+	public void setProfilePhoto(ProfilePhoto profilePhoto) {
+		this.profilePhoto = profilePhoto;
 	}
 
 	public List<ReaderBook> getReaderBooks() {

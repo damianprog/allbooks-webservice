@@ -9,8 +9,8 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "profilepics")
-public class ProfilePics {
+@Table(name = "profile_photo")
+public class ProfilePhoto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class ProfilePics {
 	@Column(name = "pic")
 	private byte[] pic;
 
-	public ProfilePics() {
+	public ProfilePhoto() {
 	}
 
 	public int getId() {
