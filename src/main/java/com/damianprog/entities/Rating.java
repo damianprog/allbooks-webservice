@@ -27,13 +27,8 @@ public class Rating {
 	@Column(name = "rate")
 	private int rate;
 
-	@Column(name = "reader_identity")
-	private int readerIdentity;
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "reader_id")
-	@JsonBackReference
-	private Reader reader;
+	@Column(name = "reader_id")
+	private int readerId;
 
 	@Column(name = "book_id")
 	private int bookId;
@@ -41,12 +36,12 @@ public class Rating {
 	public Rating() {
 	}
 
-	public Reader getReader() {
-		return reader;
+	public int getReaderId() {
+		return readerId;
 	}
 
-	public void setReader(Reader reader) {
-		this.reader = reader;
+	public void setReaderId(int readerId) {
+		this.readerId = readerId;
 	}
 
 	public int getId() {
@@ -63,14 +58,6 @@ public class Rating {
 
 	public void setRate(int rate) {
 		this.rate = rate;
-	}
-
-	public int getReaderIdentity() {
-		return readerIdentity;
-	}
-
-	public void setReaderIdentity(int readerIdentity) {
-		this.readerIdentity = readerIdentity;
 	}
 
 	public int getBookId() {

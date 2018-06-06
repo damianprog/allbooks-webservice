@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -59,15 +58,6 @@ public class Reader {
 	@JoinColumn(name = "details_id")
 	private Details details;
 
-	@OneToMany(mappedBy = "reader", cascade = CascadeType.ALL)
-	@JsonManagedReference
-	private List<Review> reviews;
-
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "reader_id")
-	@JsonManagedReference
-	private List<Rating> ratings;
-
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "reader_id")
 	@JsonManagedReference
@@ -103,22 +93,6 @@ public class Reader {
 
 	public void setReaderBooks(List<ReaderBook> readerBooks) {
 		this.readerBooks = readerBooks;
-	}
-
-	public List<Rating> getRatings() {
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings) {
-		this.ratings = ratings;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
 	}
 
 	public Details getDetails() {
@@ -171,11 +145,6 @@ public class Reader {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	@Override
-	public String toString() {
-		return "Reader [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + "]";
 	}
 
 }

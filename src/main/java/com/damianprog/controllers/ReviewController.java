@@ -28,9 +28,9 @@ public class ReviewController {
 		return reviewService.getAllBookReviews(bookId);
 	}
 	
-	@RequestMapping("/readers/{username}/books/reviews")
-	public List<Review> getReaderReviews(@PathVariable String username){
-		return reviewService.getReaderReviews(username);
+	@RequestMapping("/readers/{readerId}/books/reviews")
+	public List<Review> getReaderReviews(@PathVariable int readerId){
+		return reviewService.getReaderReviews(readerId);
 	}
 	
 	@RequestMapping("/reviews/{reviewId}")
@@ -40,10 +40,6 @@ public class ReviewController {
 	
 	@RequestMapping(method=RequestMethod.POST,value="/reviews")
 	public void postReview(@RequestBody Review review) {
-		
-		Reader reader = readerService.getReaderById(review.getReaderIdentity());
-		
-		review.setReader(reader);
 		
 		reviewService.postReview(review);
 	}

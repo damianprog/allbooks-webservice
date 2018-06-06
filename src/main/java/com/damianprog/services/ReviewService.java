@@ -34,8 +34,8 @@ public class ReviewService {
 		reviewRepository.delete(reviewId);
 	}
 
-	public List<Review> getReaderReviews(String username) {
-		return reviewRepository.findAllByReaderLogin(username);
+	public List<Review> getReaderReviews(int readerId) {
+		return reviewRepository.findAllByReaderId(readerId);
 	}
 	
 }

@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -34,33 +33,24 @@ public class Review {
 	@Column(name = "title")
 	private String title;
 
-	@Column(name = "book_title")
-	private String bookTitle;
-
 	@Column(name = "likes")
 	private int likes;
 
-	@Column(name = "readerLogin")
-	private String readerLogin;
-
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH })
+	@ManyToOne
 	@JoinColumn(name = "reader_id")
-	@JsonBackReference
 	private Reader reader;
 
-	@Column(name = "reader_identity")
-	private int readerIdentity;
+	@ManyToOne
+	@JoinColumn(name = "book_id")
+	private Book book;
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rating_id")
 	private Rating rating;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "review_id")
 	private List<Comment> comments;
-
-	@Column(name = "bookId")
-	private int bookId;
 
 	public Review() {
 	}
@@ -71,22 +61,6 @@ public class Review {
 
 	public void setRating(Rating rating) {
 		this.rating = rating;
-	}
-
-	public String getBookTitle() {
-		return bookTitle;
-	}
-
-	public void setBookTitle(String bookTitle) {
-		this.bookTitle = bookTitle;
-	}
-
-	public int getReaderIdentity() {
-		return readerIdentity;
-	}
-
-	public void setReaderIdentity(int readerIdentity) {
-		this.readerIdentity = readerIdentity;
 	}
 
 	public Reader getReader() {
@@ -121,14 +95,6 @@ public class Review {
 		this.text = text;
 	}
 
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -137,20 +103,20 @@ public class Review {
 		this.title = title;
 	}
 
-	public String getReaderLogin() {
-		return readerLogin;
-	}
-
-	public void setReaderLogin(String readerLogin) {
-		this.readerLogin = readerLogin;
-	}
-
 	public int getLikes() {
 		return likes;
 	}
 
 	public void setLikes(int likes) {
 		this.likes = likes;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 }

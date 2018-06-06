@@ -10,5 +10,5 @@ public interface ReviewRepository extends CrudRepository<Review,Integer> {
 
 	List<Review> findAllByBookId(int bookId);
 	
-	List<Review> findAllByReaderLogin(String readerLogin);
+	List<Review> findAllByReaderId(int readerId);
 }

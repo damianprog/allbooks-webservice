@@ -25,9 +25,7 @@ public class RatingController {
 	
 	@RequestMapping("/readers/{readerId}/books/{bookId}/ratings")
 	public Rating getReaderRating(@PathVariable int readerId,@PathVariable int bookId) {
-		
 		return ratingService.getReaderRating(readerId, bookId);
-		
 	}
 	
 	@RequestMapping("/books/{bookId}/ratings")
