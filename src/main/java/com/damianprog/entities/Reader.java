@@ -58,11 +58,6 @@ public class Reader {
 	@JoinColumn(name = "details_id")
 	private Details details;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "reader_id")
-	@JsonManagedReference
-	private List<ReaderBook> readerBooks;
-
 	public String getEnabled() {
 		return enabled;
 	}
@@ -85,14 +80,6 @@ public class Reader {
 
 	public void setProfilePhoto(ProfilePhoto profilePhoto) {
 		this.profilePhoto = profilePhoto;
-	}
-
-	public List<ReaderBook> getReaderBooks() {
-		return readerBooks;
-	}
-
-	public void setReaderBooks(List<ReaderBook> readerBooks) {
-		this.readerBooks = readerBooks;
 	}
 
 	public Details getDetails() {

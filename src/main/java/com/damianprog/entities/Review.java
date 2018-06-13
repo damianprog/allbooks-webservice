@@ -1,8 +1,5 @@
 package com.damianprog.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -48,10 +44,6 @@ public class Review {
 	@JoinColumn(name = "rating_id")
 	private Rating rating;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "review_id")
-	private List<Comment> comments;
-
 	public Review() {
 	}
 
@@ -69,14 +61,6 @@ public class Review {
 
 	public void setReader(Reader reader) {
 		this.reader = reader;
-	}
-
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	}
 
 	public int getId() {

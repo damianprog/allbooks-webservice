@@ -27,21 +27,31 @@ public class Rating {
 	@Column(name = "rate")
 	private int rate;
 
-	@Column(name = "reader_id")
-	private int readerId;
+	@ManyToOne
+	@JoinColumn(name = "reader_id")
+	private Reader reader;
 
-	@Column(name = "book_id")
-	private int bookId;
+	@ManyToOne
+	@JoinColumn(name = "book_id")
+	private Book book;
 
 	public Rating() {
 	}
 
-	public int getReaderId() {
-		return readerId;
+	public Reader getReader() {
+		return reader;
 	}
 
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public int getId() {
@@ -58,13 +68,5 @@ public class Rating {
 
 	public void setRate(int rate) {
 		this.rate = rate;
-	}
-
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
 	}
 }

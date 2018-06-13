@@ -19,16 +19,21 @@ import com.damianprog.services.CommentService;
 public class CommentController {
 
 	@Autowired
-	CommentService commentService;
-	
+	private CommentService commentService;
+
 	@RequestMapping("/reviews/{reviewId}/comments")
-	public List<Comment> getReviewComments(@PathVariable int reviewId){
+	public List<Comment> getReviewComments(@PathVariable int reviewId) {
 		return commentService.getReviewComments(reviewId);
 	}
-	
-	@RequestMapping(method=RequestMethod.POST,value="/comments")
-	public void postComment (@RequestBody Comment comment) {
+
+	@RequestMapping("/readers/{readerId}/books/{bookId}/reviews/comments")
+	public List<Comment> getCommentsByReaderIdAndBookId(@PathVariable int readerId, @PathVariable int bookId) {
+		return commentService.getCommentsByReaderIdAndBookId(readerId,bookId);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/comments")
+	public void postComment(@RequestBody Comment comment) {
 		commentService.postComment(comment);
 	}
-	
+
 }

@@ -26,8 +26,8 @@ public class ReaderService {
 		return readerRepository.findOne(readerId);
 	}
 
-	public void saveReader(Reader reader) {
-		readerRepository.save(reader);
+	public Reader saveReader(Reader reader) {
+		return readerRepository.save(reader);
 
 	}
 

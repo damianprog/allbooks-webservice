@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,17 +21,13 @@ public class Pending {
 	@Column(name = "id")
 	private int id;
 
-	@Column(name = "recipent_id")
-	private int recipentId;
+	@ManyToOne
+	@JoinColumn(name = "recipent_id")
+	private Reader recipent;
 
-	@Column(name = "sender_id")
-	private int senderId;
-
-	@Column(name = "recipent_login")
-	private String recipentLogin;
-
-	@Column(name = "sender_login")
-	private String senderLogin;
+	@ManyToOne
+	@JoinColumn(name = "sender_id")
+	private Reader sender;
 
 	public Pending() {
 	}
@@ -42,36 +40,20 @@ public class Pending {
 		this.id = id;
 	}
 
-	public int getRecipentId() {
-		return recipentId;
+	public Reader getRecipent() {
+		return recipent;
 	}
 
-	public void setRecipentId(int recipentId) {
-		this.recipentId = recipentId;
+	public void setRecipent(Reader recipent) {
+		this.recipent = recipent;
 	}
 
-	public int getSenderId() {
-		return senderId;
+	public Reader getSender() {
+		return sender;
 	}
 
-	public void setSenderId(int senderId) {
-		this.senderId = senderId;
-	}
-
-	public String getRecipentLogin() {
-		return recipentLogin;
-	}
-
-	public void setRecipentLogin(String recipentLogin) {
-		this.recipentLogin = recipentLogin;
-	}
-
-	public String getSenderLogin() {
-		return senderLogin;
-	}
-
-	public void setSenderLogin(String senderLogin) {
-		this.senderLogin = senderLogin;
+	public void setSender(Reader sender) {
+		this.sender = sender;
 	}
 
 }

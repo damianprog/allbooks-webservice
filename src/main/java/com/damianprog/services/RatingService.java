@@ -12,7 +12,7 @@ import com.damianprog.repositories.RatingRepository;
 public class RatingService {
 
 	@Autowired
-	RatingRepository ratingRepository;
+	private RatingRepository ratingRepository;
 	
 	public Rating getReaderRating(int readerId,int bookId) {
 		return ratingRepository.findOneByReaderIdAndBookId(readerId, bookId);
@@ -22,8 +22,8 @@ public class RatingService {
 		return ratingRepository.findAllByBookId(bookId);
 	}
 
-	public void submitRating(Rating rating) {
-		ratingRepository.save(rating);
+	public Rating submitRating(Rating rating) {
+		return ratingRepository.save(rating);
 		
 	}
 	

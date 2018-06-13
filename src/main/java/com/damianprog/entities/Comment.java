@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,18 +26,29 @@ public class Comment {
 	@Column(name = "text")
 	private String text;
 
-	@Column(name = "readerLogin")
-	private String readerLogin;
-
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rating_id")
 	private Rating rating;
 
-	@Column(name = "readerId")
-	private int readerId;
+	@ManyToOne
+	@JoinColumn(name = "reader_id")
+	private Reader reader;
 
-	@Column(name = "review_id")
-	private int reviewId;
+	@ManyToOne
+	@JoinColumn(name = "review_id")
+	private Review review;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "book_id")
+	private Book book;
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
+	}
 
 	public Rating getRating() {
 		return rating;
@@ -44,14 +56,6 @@ public class Comment {
 
 	public void setRating(Rating rating) {
 		this.rating = rating;
-	}
-
-	public int getReviewId() {
-		return reviewId;
-	}
-
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
 	}
 
 	public int getId() {
@@ -70,20 +74,20 @@ public class Comment {
 		this.text = text;
 	}
 
-	public String getReaderLogin() {
-		return readerLogin;
+	public Reader getReader() {
+		return reader;
 	}
 
-	public void setReaderLogin(String readerLogin) {
-		this.readerLogin = readerLogin;
+	public void setReader(Reader reader) {
+		this.reader = reader;
 	}
 
-	public int getReaderId() {
-		return readerId;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 }

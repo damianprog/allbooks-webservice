@@ -37,9 +37,8 @@ public class ReaderBook {
 	@JoinColumn(name = "reader_rating_id")
 	private Rating readerRating;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name = "reader_id")
-	@JsonBackReference
 	private Reader reader;
 
 	@Column(name = "shelves")

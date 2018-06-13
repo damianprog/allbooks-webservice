@@ -18,10 +18,10 @@ import com.damianprog.services.ReaderService;
 public class RatingController {
 
 	@Autowired
-	RatingService ratingService;
+	private RatingService ratingService;
 	
 	@Autowired
-	ReaderService readerService;
+	private ReaderService readerService;
 	
 	@RequestMapping("/readers/{readerId}/books/{bookId}/ratings")
 	public Rating getReaderRating(@PathVariable int readerId,@PathVariable int bookId) {
@@ -33,9 +33,9 @@ public class RatingController {
 		return ratingService.getBookRatings(bookId);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/ratings")
-	public void submitRating(@RequestBody Rating rating) {
-		ratingService.submitRating(rating);
+	@RequestMapping(method=RequestMethod.POST,value="/ratings")
+	public Rating submitRating(@RequestBody Rating rating) {
+		return ratingService.submitRating(rating);
 	}
 	
 }

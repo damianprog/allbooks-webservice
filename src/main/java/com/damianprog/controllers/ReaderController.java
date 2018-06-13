@@ -36,8 +36,8 @@ public class ReaderController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/readers")
-	public void saveReader(@RequestBody Reader reader) {
-		readerService.saveReader(reader);
+	public Reader saveReader(@RequestBody Reader reader) {
+		return readerService.saveReader(reader);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/readers")

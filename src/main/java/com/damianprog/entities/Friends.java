@@ -5,26 +5,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="friends")
+@Table(name = "friends")
 public class Friends {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="reader_1")
-	private int reader1;
-	
-	@Column(name="reader_2")
-	private int reader2;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "reader_1")
+	private Reader reader1;
+
+	@ManyToOne
+	@JoinColumn(name = "reader_2")
+	private Reader reader2;
+
 	public int getId() {
 		return id;
 	}
@@ -33,19 +37,20 @@ public class Friends {
 		this.id = id;
 	}
 
-	public int getReader1() {
+	public Reader getReader1() {
 		return reader1;
 	}
 
-	public void setReader1(int reader1) {
+	public void setReader1(Reader reader1) {
 		this.reader1 = reader1;
 	}
 
-	public int getReader2() {
+	public Reader getReader2() {
 		return reader2;
 	}
 
-	public void setReader2(int reader2) {
+	public void setReader2(Reader reader2) {
 		this.reader2 = reader2;
 	}
+
 }

@@ -16,10 +16,10 @@ import com.damianprog.repositories.PendingRepository;
 public class FriendsService {
 
 	@Autowired
-	FriendsRepository friendsRepository;
+	private FriendsRepository friendsRepository;
 
 	@Autowired
-	PendingRepository pendingRepository;
+	private PendingRepository pendingRepository;
 
 	public List<Friends> getReaderFriends(int readerId) {
 		return friendsRepository.findAllReaderFriends(readerId);
@@ -43,8 +43,12 @@ public class FriendsService {
 		pendingRepository.save(pending);
 	}
 
-	public Pending getPending(int reader1, int reader2) {
-		return pendingRepository.findOneByRecipentIdAndSenderId(reader1, reader2);
+	public Pending getPendingWithRecipentIdAndSenderId(int reader1, int reader2) {
+		return pendingRepository.findOneWithRecipentIdAndSenderId(reader1, reader2);
+	}
+
+	public Pending getPendingByRecipentIdAndSenderId(int recipentId, int senderId) {
+		return pendingRepository.findOneByRecipentIdAndSenderId(recipentId, senderId);
 	}
 
 	public List<Pending> getReaderPendings(int readerId) {
@@ -58,6 +62,10 @@ public class FriendsService {
 	@Transactional
 	public void deleteFriendsByReadersIds(int reader1, int reader2) {
 		friendsRepository.deleteByReader1AndReader2(reader1,reader2);
+	}
+
+	public Friends getFriendsByReader1IdAndReader2Id(int reader1Id, int reader2Id) {
+		return friendsRepository.findOneFriendsByReader1IdAndReader2Id(reader1Id, reader2Id);
 	}
 
 }
