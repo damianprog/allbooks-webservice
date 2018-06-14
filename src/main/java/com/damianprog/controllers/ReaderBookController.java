@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.damianprog.entities.Reader;
 import com.damianprog.entities.ReaderBook;
+import com.damianprog.services.ReaderService;
 import com.damianprog.services.ReaderbookService;
 
 @RestController
@@ -18,6 +20,9 @@ public class ReaderBookController {
 	@Autowired
 	ReaderbookService readerbookService;
 
+	@Autowired
+	ReaderService readerService;
+
 	@RequestMapping("/readers/{readerId}/readerbooks/{bookId}")
 	public ReaderBook getReaderBook(@PathVariable int readerId, @PathVariable int bookId) {
 
@@ -25,6 +30,13 @@ public class ReaderBookController {
 
 	}
 
+	@RequestMapping("/readerbooks/{readerBookId}")
+	public ReaderBook getReaderBookById(@PathVariable int readerBookId) {
+
+		return readerbookService.getReaderBookById(readerBookId);
+
+	}
+	
 	@RequestMapping("/readers/{readerId}/readerbooks")
 	public List<ReaderBook> getReaderBooks(@PathVariable int readerId) {
 
@@ -32,9 +44,21 @@ public class ReaderBookController {
 
 	}
 
-	@RequestMapping(method=RequestMethod.PUT,value="/readerbooks")
+	@RequestMapping(method = RequestMethod.POST, value = "/readerbooks")
 	public void saveReaderBook(@RequestBody ReaderBook readerBook) {
+
 		readerbookService.saveReaderBook(readerBook);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/readerbooks")
+	public void updateReaderBook(@RequestBody ReaderBook readerBook) {
+		
+		readerbookService.saveReaderBook(readerBook);
+	}
+
+	@RequestMapping(method = RequestMethod.DELETE, value = "/readers/{readerId}/readerbooks/books/{bookId}")
+	public void deleteReaderBookByReaderIdAndBookId(@PathVariable int readerId,@PathVariable int bookId) {
+		readerbookService.deleteReaderBookByReaderIdAndBookId(readerId,bookId);
 	}
 	
 }

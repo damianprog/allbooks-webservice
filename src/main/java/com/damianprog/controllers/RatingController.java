@@ -10,19 +10,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.Rating;
+import com.damianprog.entities.Reader;
 import com.damianprog.services.RatingService;
+import com.damianprog.services.ReaderService;
 
 @RestController
 public class RatingController {
 
 	@Autowired
-	RatingService ratingService;
+	private RatingService ratingService;
+	
+	@Autowired
+	private ReaderService readerService;
 	
 	@RequestMapping("/readers/{readerId}/books/{bookId}/ratings")
 	public Rating getReaderRating(@PathVariable int readerId,@PathVariable int bookId) {
-		
 		return ratingService.getReaderRating(readerId, bookId);
-		
 	}
 	
 	@RequestMapping("/books/{bookId}/ratings")
@@ -30,9 +33,9 @@ public class RatingController {
 		return ratingService.getBookRatings(bookId);
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT,value="/ratings")
-	public void submitRating(@RequestBody Rating rating) {
-		ratingService.submitRating(rating);
+	@RequestMapping(method=RequestMethod.POST,value="/ratings")
+	public Rating submitRating(@RequestBody Rating rating) {
+		return ratingService.submitRating(rating);
 	}
 	
 }

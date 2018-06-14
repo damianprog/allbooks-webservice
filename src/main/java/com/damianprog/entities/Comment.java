@@ -2,37 +2,61 @@ package com.damianprog.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="comment")
+@Table(name = "comment")
 public class Comment {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="text")
+
+	@Column(name = "text")
 	private String text;
-	
-	@Column(name="readerLogin")
-	private String readerLogin;
-	
-	@Column(name="readerId")
-	private int readerId;
-	
-	@Column(name="reviewId")
-	private int reviewId;
-	
-	@Column(name="readerRating")
-	private int readerRating;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "rating_id")
+	private Rating rating;
+
+	@ManyToOne
+	@JoinColumn(name = "reader_id")
+	private Reader reader;
+
+	@ManyToOne
+	@JoinColumn(name = "review_id")
+	private Review review;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "book_id")
+	private Book book;
+
+	public Review getReview() {
+		return review;
+	}
+
+	public void setReview(Review review) {
+		this.review = review;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
 
 	public int getId() {
 		return id;
@@ -50,36 +74,20 @@ public class Comment {
 		this.text = text;
 	}
 
-	public String getReaderLogin() {
-		return readerLogin;
+	public Reader getReader() {
+		return reader;
 	}
 
-	public void setReaderLogin(String readerLogin) {
-		this.readerLogin = readerLogin;
+	public void setReader(Reader reader) {
+		this.reader = reader;
 	}
 
-	public int getReaderId() {
-		return readerId;
+	public Book getBook() {
+		return book;
 	}
 
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
-	public int getReviewId() {
-		return reviewId;
-	}
-
-	public void setReviewId(int reviewId) {
-		this.reviewId = reviewId;
-	}
-
-	public int getReaderRating() {
-		return readerRating;
-	}
-
-	public void setReaderRating(int readerRating) {
-		this.readerRating = readerRating;
-	}
-	
 }

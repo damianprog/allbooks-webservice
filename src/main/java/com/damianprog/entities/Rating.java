@@ -1,34 +1,57 @@
 package com.damianprog.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="rating")
+@Table(name = "rating")
 public class Rating {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="rate")
+
+	@Column(name = "rate")
 	private int rate;
-	
-	@Column(name="reader_id")
-	private int readerId;
-	
-	@Column(name="book_id")
-	private int bookId;
+
+	@ManyToOne
+	@JoinColumn(name = "reader_id")
+	private Reader reader;
+
+	@ManyToOne
+	@JoinColumn(name = "book_id")
+	private Book book;
 
 	public Rating() {
+	}
+
+	public Reader getReader() {
+		return reader;
+	}
+
+	public void setReader(Reader reader) {
+		this.reader = reader;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public int getId() {
@@ -46,26 +69,4 @@ public class Rating {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
-
-	public int getUserId() {
-		return readerId;
-	}
-
-	public void setUserId(int userId) {
-		this.readerId = userId;
-	}
-
-	public int getBookId() {
-		return bookId;
-	}
-
-	public void setBookId(int bookId) {
-		this.bookId = bookId;
-	}
-
-	@Override
-	public String toString() {
-		return "Rating [id=" + id + ", rate=" + rate + ", userId=" + readerId + ", bookId=" + bookId + "]";
-	}
-	
 }

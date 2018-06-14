@@ -9,23 +9,19 @@ import javax.persistence.Lob;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="profilepics")
-public class ProfilePics {
+@Table(name = "profile_photo")
+public class ProfilePhoto {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="readerId")
-	private int readerId;
-	
+
 	@Lob
-    @Column(name="pic")
+	@Column(name = "pic")
 	private byte[] pic;
 
-	
-	public ProfilePics() {
+	public ProfilePhoto() {
 	}
 
 	public int getId() {
@@ -36,14 +32,6 @@ public class ProfilePics {
 		this.id = id;
 	}
 
-	public int getReaderId() {
-		return readerId;
-	}
-
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
-	}
-
 	public byte[] getPic() {
 		return pic;
 	}
@@ -51,5 +39,5 @@ public class ProfilePics {
 	public void setPic(byte[] pic) {
 		this.pic = pic;
 	}
-	
+
 }
