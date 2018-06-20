@@ -1,5 +1,8 @@
 package com.damianprog.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,10 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -29,8 +35,9 @@ public class Review {
 	@Column(name = "title")
 	private String title;
 
-	@Column(name = "likes")
-	private int likes;
+	@OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<Like> likes;
 
 	@ManyToOne
 	@JoinColumn(name = "reader_id")
@@ -45,22 +52,6 @@ public class Review {
 	private Rating rating;
 
 	public Review() {
-	}
-
-	public Rating getRating() {
-		return rating;
-	}
-
-	public void setRating(Rating rating) {
-		this.rating = rating;
-	}
-
-	public Reader getReader() {
-		return reader;
-	}
-
-	public void setReader(Reader reader) {
-		this.reader = reader;
 	}
 
 	public int getId() {
@@ -87,12 +78,20 @@ public class Review {
 		this.title = title;
 	}
 
-	public int getLikes() {
+	public List<Like> getLikes() {
 		return likes;
 	}
 
-	public void setLikes(int likes) {
+	public void setLikes(List<Like> likes) {
 		this.likes = likes;
+	}
+
+	public Reader getReader() {
+		return reader;
+	}
+
+	public void setReader(Reader reader) {
+		this.reader = reader;
 	}
 
 	public Book getBook() {
@@ -101,6 +100,14 @@ public class Review {
 
 	public void setBook(Book book) {
 		this.book = book;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
 	}
 
 }
