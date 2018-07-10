@@ -18,9 +18,6 @@ public class FriendsService {
 	@Autowired
 	private FriendsRepository friendsRepository;
 
-	@Autowired
-	private PendingRepository pendingRepository;
-
 	public List<Friends> getReaderFriends(int readerId) {
 		return friendsRepository.findAllReaderFriends(readerId);
 	}
@@ -39,29 +36,9 @@ public class FriendsService {
 
 	}
 
-	public void savePending(Pending pending) {
-		pendingRepository.save(pending);
-	}
-
-	public Pending getPendingWithRecipentIdAndSenderId(int reader1, int reader2) {
-		return pendingRepository.findOneWithRecipentIdAndSenderId(reader1, reader2);
-	}
-
-	public Pending getPendingByRecipentIdAndSenderId(int recipentId, int senderId) {
-		return pendingRepository.findOneByRecipentIdAndSenderId(recipentId, senderId);
-	}
-
-	public List<Pending> getReaderPendings(int readerId) {
-		return pendingRepository.findAllReaderPendings(readerId);
-	}
-
-	public void deletePending(int pendingId) {
-		pendingRepository.delete(pendingId);
-	}
-
 	@Transactional
 	public void deleteFriendsByReadersIds(int reader1, int reader2) {
-		friendsRepository.deleteByReader1AndReader2(reader1,reader2);
+		friendsRepository.deleteByReader1AndReader2(reader1, reader2);
 	}
 
 	public Friends getFriendsByReader1IdAndReader2Id(int reader1Id, int reader2Id) {

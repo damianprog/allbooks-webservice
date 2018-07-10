@@ -31,4 +31,8 @@ public class CommentService {
 		commentReposiotry.save(comment);
 	}
 
+	public Comment getCommentById(int commentId) {
+		return commentReposiotry.findOne(commentId);
+	}
+
 }

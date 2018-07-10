@@ -14,10 +14,10 @@ import com.damianprog.repositories.TokenRepository;
 public class TokenService {
 
 	@Autowired
-	TokenRepository tokenRepository;
+	private TokenRepository tokenRepository;
 
 	@Autowired
-	PasswordTokenRepository passwordTokenRepository;
+	private PasswordTokenRepository passwordTokenRepository;
 
 	public VerificationToken getTokenByReaderId(int readerId) {
 		return tokenRepository.findOneByReaderId(readerId);
@@ -27,8 +27,8 @@ public class TokenService {
 		return passwordTokenRepository.findOneByReaderId(readerId);
 	}
 
-	public void savePasswordToken(PasswordToken token) {
-		passwordTokenRepository.save(token);
+	public PasswordToken savePasswordToken(PasswordToken token) {
+		return passwordTokenRepository.save(token);
 	}
 
 	public PasswordToken getPasswordTokenByCredentials(int readerId, String passwordToken) {
@@ -40,8 +40,8 @@ public class TokenService {
 		passwordTokenRepository.deleteByReaderId(readerId);
 	}
 
-	public void saveVerificationToken(VerificationToken token) {
-		tokenRepository.save(token);
+	public VerificationToken saveVerificationToken(VerificationToken token) {
+		return tokenRepository.save(token);
 	}
 
 	public void deleteVerificationToken(int tokenId) {

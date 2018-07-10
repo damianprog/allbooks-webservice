@@ -13,12 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
@@ -82,14 +80,6 @@ public class Reader {
 		this.profilePhoto = profilePhoto;
 	}
 
-	public Details getDetails() {
-		return details;
-	}
-
-	public void setDetails(Details details) {
-		this.details = details;
-	}
-
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -132,6 +122,14 @@ public class Reader {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Details getDetails() {
+		return details;
+	}
+
+	public void setDetails(Details details) {
+		this.details = details;
 	}
 
 }

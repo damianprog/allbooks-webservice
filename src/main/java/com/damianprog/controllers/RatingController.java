@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.Rating;
-import com.damianprog.entities.Reader;
 import com.damianprog.services.RatingService;
-import com.damianprog.services.ReaderService;
 
 @RestController
 public class RatingController {
@@ -20,8 +18,10 @@ public class RatingController {
 	@Autowired
 	private RatingService ratingService;
 	
-	@Autowired
-	private ReaderService readerService;
+	@RequestMapping("/ratings/{ratingId}")
+	public Rating getRatingById(@PathVariable int ratingId) {
+		return ratingService.getRatingById(ratingId);
+	}
 	
 	@RequestMapping("/readers/{readerId}/books/{bookId}/ratings")
 	public Rating getReaderRating(@PathVariable int readerId,@PathVariable int bookId) {

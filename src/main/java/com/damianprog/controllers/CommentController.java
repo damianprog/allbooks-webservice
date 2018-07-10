@@ -2,9 +2,6 @@ package com.damianprog.controllers;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +18,12 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 
+	@RequestMapping("/comments/{commentId}")
+	public Comment getCommentById(@PathVariable int commentId) {
+		return commentService.getCommentById(commentId);
+	}
+
+	
 	@RequestMapping("/reviews/{reviewId}/comments")
 	public List<Comment> getReviewComments(@PathVariable int reviewId) {
 		return commentService.getReviewComments(reviewId);
@@ -31,7 +34,7 @@ public class CommentController {
 		return commentService.getCommentsByReaderIdAndBookId(readerId,bookId);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/comments")
+	@RequestMapping(method = RequestMethod.PUT, value = "/comments")
 	public void postComment(@RequestBody Comment comment) {
 		commentService.postComment(comment);
 	}

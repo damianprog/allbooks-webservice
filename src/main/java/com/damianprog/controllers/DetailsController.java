@@ -14,12 +14,7 @@ import com.damianprog.services.DetailsService;
 public class DetailsController {
 
 	@Autowired
-	DetailsService detailsService;
-	
-	@RequestMapping("/readers/{readerId}/details")
-	public Details getReaderDetails(@PathVariable int readerId) {
-		return detailsService.getReaderDetails(readerId);
-	}
+	private DetailsService detailsService;
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/details")
 	public void saveDetails(@RequestBody Details details) {

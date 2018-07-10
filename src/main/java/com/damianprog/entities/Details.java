@@ -9,67 +9,56 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="details")
+@Table(name = "details")
 public class Details {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="reader_id")
-	private int readerId;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_Name")
+
+	@Column(name = "last_Name")
 	private String lastName;
-	
-	@Column(name="gender")
+
+	@Column(name = "gender")
 	private String gender;
-	
-	@Column(name="city")
+
+	@Column(name = "city")
 	private String city;
-	
-	@Column(name="country")
+
+	@Column(name = "country")
 	private String country;
-	
-	@Column(name="date_birth")
+
+	@Column(name = "date_birth")
 	private String dateBirth;
-	
-	@Column(name="website")
+
+	@Column(name = "website")
 	private String website;
-	
-	@Column(name="interests")
+
+	@Column(name = "interests")
 	private String interests;
-	
-	@Column(name="favourite_books")
+
+	@Column(name = "favourite_books")
 	private String favouriteBooks;
-	
-	@Column(name="about")
+
+	@Column(name = "about")
 	private String about;
 
 	public Details() {
-		
+
 	}
-	
+
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public int getReaderId() {
-		return readerId;
-	}
-
-	public void setReaderId(int readerId) {
-		this.readerId = readerId;
 	}
 
 	public String getFirstName() {
@@ -111,7 +100,6 @@ public class Details {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
 
 	public String getDateBirth() {
 		return dateBirth;

@@ -18,10 +18,10 @@ import com.damianprog.services.ReviewService;
 public class ReviewController {
 
 	@Autowired
-	ReviewService reviewService;
+	private ReviewService reviewService;
 	
 	@Autowired
-	ReaderService readerService;
+	private ReaderService readerService;
 	
 	@RequestMapping("/books/{bookId}/reviews")
 	public List<Review> getAllBookReviews(@PathVariable int bookId) {

@@ -26,5 +26,9 @@ public class RatingService {
 		return ratingRepository.save(rating);
 		
 	}
+
+	public Rating getRatingById(int ratingId) {
+		return ratingRepository.findOne(ratingId);
+	}
 	
 }

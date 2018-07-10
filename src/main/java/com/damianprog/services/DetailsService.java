@@ -10,11 +10,7 @@ import com.damianprog.repositories.DetailsRepository;
 public class DetailsService {
 
 	@Autowired
-	DetailsRepository detailsRepository;
-	
-	public Details getReaderDetails(int readerId) {
-		return detailsRepository.findOneByReaderId(readerId);
-	}
+	private DetailsRepository detailsRepository;
 	
 	public void saveDetails(Details details) {
 		detailsRepository.save(details);
