@@ -16,7 +16,7 @@ import com.damianprog.services.BookService;
 public class BookController {
 
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 	
 	@RequestMapping("/books/title/{title}")
 	public Book getBookByTitle(@PathVariable String title) {

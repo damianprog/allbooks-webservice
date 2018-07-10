@@ -2,6 +2,8 @@ package com.damianprog.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -41,8 +42,9 @@ public class ReaderBook {
 	@JoinColumn(name = "reader_id")
 	private Reader reader;
 
-	@Column(name = "shelves")
-	private String shelves;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "shelves_states")
+	private ShelvesStates shelvesStates;
 
 	@Column(name = "date_read")
 	private String dateRead;
@@ -90,12 +92,12 @@ public class ReaderBook {
 		this.book = book;
 	}
 
-	public String getShelves() {
-		return shelves;
+	public ShelvesStates getShelvesStates() {
+		return shelvesStates;
 	}
 
-	public void setShelves(String shelves) {
-		this.shelves = shelves;
+	public void setShelvesStates(ShelvesStates shelvesStates) {
+		this.shelvesStates = shelvesStates;
 	}
 
 	public String getDateRead() {

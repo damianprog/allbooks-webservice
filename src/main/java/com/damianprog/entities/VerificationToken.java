@@ -1,6 +1,7 @@
 package com.damianprog.entities;
 
-import javax.persistence.CascadeType;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,21 +16,24 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
-@Table(name="verification_token")
+@Table(name = "verification_token")
 public class VerificationToken {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
-	
-	@Column(name="token")
+
+	@Column(name = "token")
 	private String token;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="reader_id")
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "reader_id")
 	private Reader reader;
-	
+
+	@Column(name = "expiry_date")
+	private Date expiryDate;
+
 	public VerificationToken() {
 	}
 
@@ -56,4 +60,13 @@ public class VerificationToken {
 	public void setReader(Reader reader) {
 		this.reader = reader;
 	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+
 }

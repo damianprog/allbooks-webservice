@@ -13,10 +13,10 @@ import com.damianprog.repositories.BookRepositoryJpa;
 public class BookService {
 
 	@Autowired
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
 
 	@Autowired
-	BookRepositoryJpa bookRepositoryJpa;
+	private BookRepositoryJpa bookRepositoryJpa;
 	
 	public Book getBookByTitle(String title) {
 		return bookRepository.findOneByMiniTitle(title);

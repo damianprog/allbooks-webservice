@@ -17,16 +17,21 @@ import com.damianprog.services.TokenService;
 public class TokenController {
 
 	@Autowired
-	TokenService tokenService;
+	private TokenService tokenService;
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, value = "/readers/verificationTokens")
-	public void saveVerificationToken(@RequestBody VerificationToken token) {
+	public VerificationToken saveVerificationToken(@RequestBody VerificationToken token) {
+		return tokenService.saveVerificationToken(token);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON, value = "/verificationTokens")
+	public void updateVerificationToken(@RequestBody VerificationToken token) {
 		tokenService.saveVerificationToken(token);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON, value = "/readers/passwordTokens")
-	public void savePasswordToken(@RequestBody PasswordToken token) {
-		tokenService.savePasswordToken(token);
+	public PasswordToken savePasswordToken(@RequestBody PasswordToken token) {
+		return tokenService.savePasswordToken(token);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE,value = "/verificationTokens/{tokenId}")
