@@ -12,7 +12,7 @@ import com.damianprog.repositories.ReviewRepository;
 public class ReviewService {
 
 	@Autowired
-	ReviewRepository reviewRepository;
+	private ReviewRepository reviewRepository;
 	
 	public List<Review> getAllBookReviews(int bookId){
 		return reviewRepository.findAllByBookId(bookId);
@@ -36,6 +36,10 @@ public class ReviewService {
 
 	public List<Review> getReaderReviews(int readerId) {
 		return reviewRepository.findAllByReaderId(readerId);
+	}
+
+	public void deleteReviewByIdAndReaderId(int reviewId, int readerId) {
+		reviewRepository.deleteByIdAndReaderId(reviewId, readerId);
 	}
 	
 }

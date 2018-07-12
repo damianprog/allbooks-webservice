@@ -2,12 +2,8 @@ package com.damianprog.services;
 
 import java.util.List;
 
-import javax.ws.rs.core.Response;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.damianprog.entities.Comment;
 import com.damianprog.repositories.CommentRepository;
@@ -33,6 +29,14 @@ public class CommentService {
 
 	public Comment getCommentById(int commentId) {
 		return commentReposiotry.findOne(commentId);
+	}
+
+	public void deleteCommentById(int commentId) {
+		commentReposiotry.delete(commentId);
+	}
+
+	public void deleteCommentByIdAndReaderId(int commentId, int readerId) {
+		commentReposiotry.deleteByIdAndReaderId(commentId, readerId);
 	}
 
 }

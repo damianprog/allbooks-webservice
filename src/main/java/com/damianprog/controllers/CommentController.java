@@ -39,4 +39,13 @@ public class CommentController {
 		commentService.postComment(comment);
 	}
 
+	@RequestMapping(method = RequestMethod.DELETE,value = "/comments/{commentId}")
+	public void deleteCommentById(@PathVariable int commentId) {
+		commentService.deleteCommentById(commentId);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE,value = "/readers/{readerId}/comments/{commentId}")
+	public void deleteCommentByIdAndReaderId(@PathVariable int readerId,@PathVariable int commentId) {
+		commentService.deleteCommentByIdAndReaderId(commentId,readerId);
+	}
 }
