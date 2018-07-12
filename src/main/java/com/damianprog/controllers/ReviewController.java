@@ -20,9 +20,6 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-	@Autowired
-	private ReaderService readerService;
-	
 	@RequestMapping("/books/{bookId}/reviews")
 	public List<Review> getAllBookReviews(@PathVariable int bookId) {
 		return reviewService.getAllBookReviews(bookId);
@@ -52,5 +49,10 @@ public class ReviewController {
 	@RequestMapping(method=RequestMethod.DELETE,value="/reviews/{reviewId}")
 	public void deleteReview(@PathVariable int reviewId) {
 		reviewService.deleteReview(reviewId);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE,value="/readers/{readerId}/books/reviews/{reviewId}")
+	public void deleteReviewByIdAndReaderId(@PathVariable int readerId,@PathVariable int reviewId) {
+		reviewService.deleteReviewByIdAndReaderId(reviewId,readerId);
 	}
 }
