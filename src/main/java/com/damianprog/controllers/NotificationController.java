@@ -1,8 +1,8 @@
 package com.damianprog.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,9 +29,9 @@ public class NotificationController {
 		notificationService.deleteNotificationByNotificationIdAndReaderId(notificationId,readerId);
 	}
 
-	@RequestMapping("/readers/{readerId}/notifications")
-	public List<Notification> getNotificationsByReaderId(@PathVariable int readerId) {
-		return notificationService.getNotificationsByReaderId(readerId);
+	@RequestMapping("/readers/{readerId}/notifications/pages/{page}")
+	public Page<Notification> getNotificationsByReaderId(@PathVariable int readerId,@PathVariable int page) {
+		return notificationService.getNotificationsByReaderId(readerId,new PageRequest(page-1,10));
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/notifications/{notificationId}")

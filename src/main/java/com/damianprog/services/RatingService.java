@@ -30,5 +30,9 @@ public class RatingService {
 	public Rating getRatingById(int ratingId) {
 		return ratingRepository.findOne(ratingId);
 	}
+
+	public List<Rating> findFirst10ByOrderByIdDesc() {
+		return ratingRepository.findFirst10ByOrderByIdDesc();
+	}
 	
 }

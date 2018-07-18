@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -40,8 +39,8 @@ public class Review {
 	private List<Like> likes;
 
 	@ManyToOne
-	@JoinColumn(name = "reader_id")
-	private Reader reader;
+	@JoinColumn(name = "posting_reader_id")
+	private Reader postingReader;
 
 	@ManyToOne
 	@JoinColumn(name = "book_id")
@@ -86,12 +85,12 @@ public class Review {
 		this.likes = likes;
 	}
 
-	public Reader getReader() {
-		return reader;
+	public Reader getPostingReader() {
+		return postingReader;
 	}
 
-	public void setReader(Reader reader) {
-		this.reader = reader;
+	public void setPostingReader(Reader postingReader) {
+		this.postingReader = postingReader;
 	}
 
 	public Book getBook() {

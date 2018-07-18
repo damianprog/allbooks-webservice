@@ -35,11 +35,11 @@ public class ReviewService {
 	}
 
 	public List<Review> getReaderReviews(int readerId) {
-		return reviewRepository.findAllByReaderId(readerId);
+		return reviewRepository.findAllByPostingReaderId(readerId);
 	}
 
 	public void deleteReviewByIdAndReaderId(int reviewId, int readerId) {
-		reviewRepository.deleteByIdAndReaderId(reviewId, readerId);
+		reviewRepository.deleteByIdAndPostingReader(reviewId, readerId);
 	}
 	
 }

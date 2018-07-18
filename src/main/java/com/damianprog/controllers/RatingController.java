@@ -38,4 +38,9 @@ public class RatingController {
 		return ratingService.submitRating(rating);
 	}
 	
+	@RequestMapping("/ratings/latest")
+	public List<Rating> find10LatestRatings(){
+		return ratingService.findFirst10ByOrderByIdDesc();
+	}
+	
 }

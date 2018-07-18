@@ -1,5 +1,7 @@
 package com.damianprog.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,10 +31,6 @@ public class ReaderBook {
 	@JoinColumn(name = "book_id")
 	private Book book;
 
-	@Lob
-	@Column(name = "book_pic")
-	private byte[] bookPic;
-
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "reader_rating_id")
 	private Rating readerRating;
@@ -47,18 +44,10 @@ public class ReaderBook {
 	private ShelvesStates shelvesStates;
 
 	@Column(name = "date_read")
-	private String dateRead;
+	private Date dateRead;
 
 	@Column(name = "date_added")
-	private String dateAdded;
-
-	public byte[] getBookPic() {
-		return bookPic;
-	}
-
-	public void setBookPic(byte[] bookPic) {
-		this.bookPic = bookPic;
-	}
+	private Date dateAdded;
 
 	public Rating getReaderRating() {
 		return readerRating;
@@ -100,19 +89,19 @@ public class ReaderBook {
 		this.shelvesStates = shelvesStates;
 	}
 
-	public String getDateRead() {
+	public Date getDateRead() {
 		return dateRead;
 	}
 
-	public void setDateRead(String dateRead) {
+	public void setDateRead(Date dateRead) {
 		this.dateRead = dateRead;
 	}
 
-	public String getDateAdded() {
+	public Date getDateAdded() {
 		return dateAdded;
 	}
 
-	public void setDateAdded(String dateAdded) {
+	public void setDateAdded(Date dateAdded) {
 		this.dateAdded = dateAdded;
 	}
 

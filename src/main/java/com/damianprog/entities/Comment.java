@@ -31,8 +31,8 @@ public class Comment {
 	private Rating rating;
 
 	@ManyToOne
-	@JoinColumn(name = "reader_id")
-	private Reader reader;
+	@JoinColumn(name = "posting_reader_id")
+	private Reader postingReader;
 
 	@ManyToOne
 	@JoinColumn(name = "review_id")
@@ -74,12 +74,12 @@ public class Comment {
 		this.text = text;
 	}
 
-	public Reader getReader() {
-		return reader;
+	public Reader getPostingReader() {
+		return postingReader;
 	}
 
-	public void setReader(Reader reader) {
-		this.reader = reader;
+	public void setPostingReader(Reader postingReader) {
+		this.postingReader = postingReader;
 	}
 
 	public Book getBook() {

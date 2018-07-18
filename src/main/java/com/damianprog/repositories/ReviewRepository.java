@@ -12,8 +12,8 @@ public interface ReviewRepository extends CrudRepository<Review,Integer> {
 
 	List<Review> findAllByBookId(int bookId);
 	
-	List<Review> findAllByReaderId(int readerId);
+	List<Review> findAllByPostingReaderId(int postingReaderId);
 	
 	@Transactional
-	void deleteByIdAndReaderId(int id,int readerId);
+	void deleteByIdAndPostingReader(int id,int postingReader);
 }

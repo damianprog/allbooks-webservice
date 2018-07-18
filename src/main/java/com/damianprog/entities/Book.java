@@ -8,8 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@Indexed
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "book")
@@ -28,6 +32,7 @@ public class Book {
 	private String miniTitle;
 
 	@Column(name = "full_title")
+	@Field
 	private String fullTitle;
 
 	@Column(name = "author")
