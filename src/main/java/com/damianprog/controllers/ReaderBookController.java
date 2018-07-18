@@ -84,4 +84,9 @@ public class ReaderBookController {
 		
 		return readerbookService.getReaderBooksByShelvesPages(readerId,shelvesState,new PageRequest(page-1,10));
 	}
+	
+	@RequestMapping("/readerbooks/latest")
+	public List<ReaderBook> find10LatestReaderBooks(){
+		return readerbookService.find10LatestReaderBooks();
+	}
 }

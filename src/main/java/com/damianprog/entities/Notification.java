@@ -1,5 +1,7 @@
 package com.damianprog.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +31,7 @@ public class Notification {
 	private String text;
 
 	@Column(name = "date")
-	private String date;
+	private Date date;
 
 	public int getId() {
 		return id;
@@ -55,11 +57,11 @@ public class Notification {
 		this.text = text;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

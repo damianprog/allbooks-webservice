@@ -10,4 +10,5 @@ public interface RatingRepository  extends CrudRepository<Rating,Integer>{
 
 	Rating findOneByReaderIdAndBookId(int readerId,int bookId);
 	List<Rating> findAllByBookId(int bookId);
+	List<Rating> findFirst10ByOrderByIdDesc();
 }

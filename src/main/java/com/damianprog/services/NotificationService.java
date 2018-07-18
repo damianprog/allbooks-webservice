@@ -1,8 +1,8 @@
 package com.damianprog.services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.damianprog.entities.Notification;
@@ -18,8 +18,8 @@ public class NotificationService {
 		return notificationRepository.findOne(notificationId);
 	}
 
-	public List<Notification> getNotificationsByReaderId(int readerId) {
-		return notificationRepository.findAllByReaderId(readerId);
+	public Page<Notification> getNotificationsByReaderId(int readerId,Pageable pageable) {
+		return notificationRepository.findAllByReaderId(readerId,pageable);
 	}
 
 	public void deleteNotificationById(int notificationId) {

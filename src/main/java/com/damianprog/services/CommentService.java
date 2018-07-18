@@ -19,7 +19,7 @@ public class CommentService {
 	}
 
 	public List<Comment> getCommentsByReaderIdAndBookId(int readerId, int bookId) {
-		return commentReposiotry.findAllByReaderIdAndBookId(readerId,bookId);
+		return commentReposiotry.findAllByPostingReaderIdAndBookId(readerId,bookId);
 	}
 
 	
@@ -36,7 +36,7 @@ public class CommentService {
 	}
 
 	public void deleteCommentByIdAndReaderId(int commentId, int readerId) {
-		commentReposiotry.deleteByIdAndReaderId(commentId, readerId);
+		commentReposiotry.deleteByIdAndPostingReaderId(commentId, readerId);
 	}
 
 }

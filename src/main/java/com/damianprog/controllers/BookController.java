@@ -1,5 +1,7 @@
 package com.damianprog.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,10 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.Book;
 import com.damianprog.services.BookService;
+import com.damianprog.services.HibernateSearchService;
 
 @RestController
 public class BookController {
 
+	@Autowired
+    private HibernateSearchService searchService;
+	
 	@Autowired
 	private BookService bookService;
 	
@@ -36,6 +42,11 @@ public class BookController {
 	@RequestMapping("/books/categories/{category}/{page}")
 	public Page<Book> getBooksByCategory(@PathVariable String category,@PathVariable int page){
 		return bookService.getBooksByCategory(category,new PageRequest(page-1,3));
+	}
+	
+	@RequestMapping("/books/search/{phrase}")
+	public List<Book> searchBooksWithPhrase(@PathVariable String phrase){
+		return searchService.fuzzySearch(phrase);
 	}
 	
 }

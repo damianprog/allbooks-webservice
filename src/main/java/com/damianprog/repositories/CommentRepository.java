@@ -12,8 +12,8 @@ public interface CommentRepository extends CrudRepository<Comment,Integer> {
 
 	List<Comment> findAllByReviewId(int reviewId);
 
-	List<Comment> findAllByReaderIdAndBookId(int readerId, int bookId);
+	List<Comment> findAllByPostingReaderIdAndBookId(int postingReaderId, int bookId);
 
 	@Transactional
-	void deleteByIdAndReaderId(int id,int readerId);
+	void deleteByIdAndPostingReaderId(int id,int postingReaderId);
 }

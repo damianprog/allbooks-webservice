@@ -37,9 +37,8 @@ public class Reader {
 	@Column(name = "enabled")
 	private String enabled;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "profile_pics_id")
-	private ProfilePhoto profilePhoto;
+	@Column(name = "profile_photo")
+	private byte[] profilePhoto;
 
 	@Column(name = "email")
 	private String email;
@@ -72,11 +71,11 @@ public class Reader {
 		this.friends = friends;
 	}
 
-	public ProfilePhoto getProfilePhoto() {
+	public byte[] getProfilePhoto() {
 		return profilePhoto;
 	}
 
-	public void setProfilePhoto(ProfilePhoto profilePhoto) {
+	public void setProfilePhoto(byte[] profilePhoto) {
 		this.profilePhoto = profilePhoto;
 	}
 
