@@ -41,5 +41,9 @@ public class ReviewService {
 	public void deleteReviewByIdAndReaderId(int reviewId, int readerId) {
 		reviewRepository.deleteByIdAndPostingReader(reviewId, readerId);
 	}
+
+	public List<Review> getLatestReaderReviews(int readerId) {
+		return reviewRepository.findFirst10ByOrderByIdDescAndReaderId(readerId);
+	}
 	
 }

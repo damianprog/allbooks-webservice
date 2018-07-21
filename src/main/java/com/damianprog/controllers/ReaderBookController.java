@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.ReaderBook;
 import com.damianprog.entities.ShelvesStates;
-import com.damianprog.services.ReaderService;
 import com.damianprog.services.ReaderbookService;
 
 @RestController
@@ -21,9 +20,6 @@ public class ReaderBookController {
 
 	@Autowired
 	private ReaderbookService readerbookService;
-
-	@Autowired
-	private ReaderService readerService;
 
 	@RequestMapping("/readers/{readerId}/readerbooks/{bookId}")
 	public ReaderBook getReaderBook(@PathVariable int readerId, @PathVariable int bookId) {

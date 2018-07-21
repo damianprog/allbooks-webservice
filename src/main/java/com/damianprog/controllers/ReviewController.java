@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.damianprog.entities.Reader;
 import com.damianprog.entities.Review;
-import com.damianprog.services.ReaderService;
 import com.damianprog.services.ReviewService;
 
 @RestController
@@ -54,5 +52,10 @@ public class ReviewController {
 	@RequestMapping(method=RequestMethod.DELETE,value="/readers/{readerId}/books/reviews/{reviewId}")
 	public void deleteReviewByIdAndReaderId(@PathVariable int readerId,@PathVariable int reviewId) {
 		reviewService.deleteReviewByIdAndReaderId(reviewId,readerId);
+	}
+	
+	@RequestMapping("/readers/{readerId}/reviews/latest")
+	public List<Review> getLatestReaderReviews(@PathVariable int readerId) {
+		return reviewService.getLatestReaderReviews(readerId);
 	}
 }

@@ -15,7 +15,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) {
-		resources.resourceId(RESOURCE_ID).stateless(false);
+		resources.resourceId(RESOURCE_ID);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
 		http.
 		anonymous().disable().authorizeRequests()
 		.anyRequest()
-		.access("hasRole('ADMIN')")
+		.access("#oauth2.hasScope('write')")
 		.and().exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 	}
 
