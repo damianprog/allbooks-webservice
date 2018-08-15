@@ -10,4 +10,8 @@ public interface BookRepositoryJpa extends JpaRepository<Book,Integer>{
 
 	Page<Book> findAllByCategory(String category,Pageable pageRequest);
 	
+	Page<Book> findAll(Pageable pageable);
+
+	Book findFirstByIdNotInAndCategory(int[] excludedIds,String category);
+	
 }

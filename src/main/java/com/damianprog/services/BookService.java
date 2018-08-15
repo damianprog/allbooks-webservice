@@ -35,6 +35,8 @@ public class BookService {
 		return bookRepositoryJpa.findAllByCategory(category,pageable);
 	}
 
-	
+	public Book getBookByCategoryExceptBooksWithIds(String category,int[] excludedIds) {
+		return bookRepositoryJpa.findFirstByIdNotInAndCategory(excludedIds,category);
+	}
 	
 }
