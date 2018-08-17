@@ -19,4 +19,8 @@ public interface PendingRepository extends CrudRepository<Pending,Integer>  {
 	
 	@Query("select p from Pending p where p.recipent.id=:readerId")
 	List<Pending> findAllReaderPendings(@Param("readerId") int readerId);
+	
+	@Query("select p from Pending p where p.sender.id=:readerId")
+	List<Pending> findAllReaderAsSenderPendings(@Param("readerId") int readerId);
+	
 }

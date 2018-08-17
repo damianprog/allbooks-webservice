@@ -40,6 +40,11 @@ public class PendingController {
 		return pendingService.getReaderPendings(readerId);
 	}
 
+	@RequestMapping("/readers/{readerId}/friends/senders/pendings")
+	public List<Pending> getReaderAsSenderPendings(@PathVariable int readerId){
+		return pendingService.getReaderAsSenderPendings(readerId);
+	}
+	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/pendings/{pendingId}")
 	public void deletePending(@PathVariable("pendingId") int pendingId) {
 		pendingService.deletePending(pendingId);

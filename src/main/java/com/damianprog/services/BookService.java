@@ -1,5 +1,7 @@
 package com.damianprog.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,8 +37,8 @@ public class BookService {
 		return bookRepositoryJpa.findAllByCategory(category,pageable);
 	}
 
-	public Book getBookByCategoryExceptBooksWithIds(String category,int[] excludedIds) {
-		return bookRepositoryJpa.findFirstByIdNotInAndCategory(excludedIds,category);
+	public List<Book> getBookByCategoryExceptBooksWithIds(String category,int[] excludedIds) {
+		return bookRepositoryJpa.findFirst10ByIdNotInAndCategory(excludedIds,category);
 	}
 	
 }

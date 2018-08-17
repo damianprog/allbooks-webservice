@@ -1,6 +1,7 @@
 package com.damianprog.controllers;
 
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.damianprog.entities.Book;
 import com.damianprog.services.BookService;
 import com.damianprog.services.HibernateSearchService;
+import com.damianprog.utils.ArrayOfIntsGetter;
 
 @RestController
 public class BookController {
@@ -25,6 +27,9 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 
+	@Autowired
+	private ArrayOfIntsGetter arrayOfIntsGetter;
+	
 	@RequestMapping("/books/title/{title}")
 	public Book getBookByTitle(@PathVariable String title) {
 		return bookService.getBookByTitle(title);
@@ -49,14 +54,16 @@ public class BookController {
 	public Book getBookByCategoryExceptBooksWithIds(@PathVariable String category,
 			@PathVariable("excludedIds") String excludedIds) {
 		
-		String[] excludedIdsStringArray = excludedIds.split(",");
+		int[] excludedIdsArray = arrayOfIntsGetter.get(excludedIds);
 		
-		int[] excludedIdsArray = new int[excludedIdsStringArray.length];
+		List<Book> books = bookService.getBookByCategoryExceptBooksWithIds(category,excludedIdsArray);
+	
+		Random rand = new Random();
 		
-		for(int i=0;i<excludedIdsStringArray.length;i++)
-			excludedIdsArray[i] = Integer.valueOf(excludedIdsStringArray[i]);
-		
-		return bookService.getBookByCategoryExceptBooksWithIds(category,excludedIdsArray);
+		if(!books.isEmpty())
+			return books.get(rand.nextInt(books.size()));
+		else
+			return null;
 	}
 
 	@RequestMapping("/books/search/{phrase}")

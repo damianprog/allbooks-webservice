@@ -34,5 +34,7 @@ public class PendingService {
 		pendingRepository.delete(pendingId);
 	}
 
-	
+	public List<Pending> getReaderAsSenderPendings(int readerId){
+		return pendingRepository.findAllReaderAsSenderPendings(readerId);
+	}
 }
