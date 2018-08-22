@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.damianprog.entities.ReaderBook;
-import com.damianprog.entities.ShelvesStates;
+import com.damianprog.enumeration.ShelvesStates;
 import com.damianprog.repositories.ReaderbookRepositoryJpa;
 
 @Service

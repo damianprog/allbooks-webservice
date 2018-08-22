@@ -1,4 +1,4 @@
-package com.damianprog.entities;
+package com.damianprog.enumeration;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.damianprog.entities.ReaderBook;
-import com.damianprog.entities.ShelvesStates;
+import com.damianprog.enumeration.ShelvesStates;
 
 public interface ReaderbookRepositoryJpa extends JpaRepository<ReaderBook,Integer>{
 

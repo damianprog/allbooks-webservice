@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.damianprog.entities.ReaderBook;
-import com.damianprog.entities.ShelvesStates;
+import com.damianprog.enumeration.ShelvesStates;
 import com.damianprog.services.ReaderbookService;
 
 @RestController
