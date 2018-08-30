@@ -2,10 +2,10 @@ package com.damianprog.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.damianprog.entities.FavoriteGenres;
+import com.damianprog.entities.FavouriteGenres;
 
-public interface FavoriteGenresRepository extends CrudRepository<FavoriteGenres,Integer>{
+public interface FavoriteGenresRepository extends CrudRepository<FavouriteGenres,Integer>{
 
-	FavoriteGenres findOneByReaderId(int readerId);
+	FavouriteGenres findOneByReaderId(int readerId);
 	
 }

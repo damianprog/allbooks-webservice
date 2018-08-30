@@ -62,5 +62,9 @@ public class ReaderbookService {
 	public List<Integer> getReaderBooksBooksIdsByReaderIdAndCategory(int readerId, String category) {
 		return readerbookRepositoryJpa.getReaderBooksBooksIdsByReaderIdAndCategory(readerId,category);
 	}
-	
+
+	public List<ReaderBook> findFirst10LatestReaderBooksByReaderId(int readerId) {
+		return readerbookRepositoryJpa.findFirst10ByReaderIdOrderByIdDesc(readerId);
+	}
+
 }

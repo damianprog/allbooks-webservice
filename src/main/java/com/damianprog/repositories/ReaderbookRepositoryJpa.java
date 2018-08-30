@@ -28,8 +28,10 @@ public interface ReaderbookRepositoryJpa extends JpaRepository<ReaderBook,Intege
 	@Transactional
 	void deleteByReaderIdAndBookId(int readerId,int bookId);
 	
+	List<ReaderBook> findFirst10ByReaderIdOrderByIdDesc(int readerId);
+	
 	List<ReaderBook> findFirst10ByOrderByIdDesc();
-
+	
 	@Query("select rb from ReaderBook rb where rb.reader.id=:readerId and rb.book.category=:category")
 	List<ReaderBook> findAllByReaderIdAndCategory(@Param("readerId") int readerId,@Param("category") String category);
 

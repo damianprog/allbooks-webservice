@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.damianprog.entities.FavoriteGenres;
+import com.damianprog.entities.FavouriteGenres;
 import com.damianprog.services.FavoriteGenresService;
 
 @RestController
@@ -16,17 +16,17 @@ public class FavoriteGenresController {
 	private FavoriteGenresService favoriteGenresService;
 	
 	@RequestMapping("/favoriteGenres")
-	public void saveFavoriteGenres(@RequestBody FavoriteGenres favoriteGenres) {
+	public void saveFavoriteGenres(@RequestBody FavouriteGenres favoriteGenres) {
 		favoriteGenresService.saveFavoriteGenres(favoriteGenres);
 	}
 	
 	@RequestMapping("/readers/{readerId}/favoriteGenres")
-	public FavoriteGenres getByReaderId(@PathVariable int readerId) {
+	public FavouriteGenres getByReaderId(@PathVariable int readerId) {
 		return favoriteGenresService.getByReaderId(readerId);
 	}
 	
 	@RequestMapping("/favoriteGenres/{favoriteGenresId}")
-	public FavoriteGenres getById(@PathVariable int favoriteGenresId) {
+	public FavouriteGenres getById(@PathVariable int favoriteGenresId) {
 		return favoriteGenresService.getById(favoriteGenresId);
 	}
 	

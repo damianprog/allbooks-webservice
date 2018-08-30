@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 @Table(name = "favorite_genres")
-public class FavoriteGenres {
+public class FavouriteGenres {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,7 @@
 package com.damianprog.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,7 +63,7 @@ public class Book {
 	private int pages;
 
 	@Column(name = "publish_date")
-	private String publishDate;
+	private Date publishDate;
 
 	@Column(name = "publish_company")
 	private String publishCompany;
@@ -152,11 +154,11 @@ public class Book {
 		this.pages = pages;
 	}
 
-	public String getPublishDate() {
+	public Date getPublishDate() {
 		return publishDate;
 	}
 
-	public void setPublishDate(String publishDate) {
+	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
 

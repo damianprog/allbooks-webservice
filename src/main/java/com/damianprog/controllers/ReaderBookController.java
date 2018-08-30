@@ -86,6 +86,11 @@ public class ReaderBookController {
 		return readerbookService.find10LatestReaderBooks();
 	}
 	
+	@RequestMapping("/readers/{readerId}/readerbooks/latest")
+	public List<ReaderBook> findFirst10LatestReaderBooksByReaderId(@PathVariable int readerId){
+		return readerbookService.findFirst10LatestReaderBooksByReaderId(readerId);
+	}
+	
 	@RequestMapping("/readers/{readerId}/readerbooks/categories/{category}")
 	public List<ReaderBook> getReaderBooksByCategory(@PathVariable int readerId,@PathVariable String category){
 		return readerbookService.getReaderBooksByCategory(readerId,category);

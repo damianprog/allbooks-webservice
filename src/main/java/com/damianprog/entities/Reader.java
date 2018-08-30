@@ -34,8 +34,8 @@ public class Reader {
 	@Column(name = "password")
 	private String password;
 
-	@Column(name = "enabled")
-	private String enabled;
+	@Column(name = "email_authenticated")
+	private String emailAuthenticated;
 
 	@Column(name = "profile_photo")
 	private byte[] profilePhoto;
@@ -55,12 +55,12 @@ public class Reader {
 	@JoinColumn(name = "details_id")
 	private Details details;
 
-	public String getEnabled() {
-		return enabled;
+	public String getEmailAuthenticated() {
+		return emailAuthenticated;
 	}
 
-	public void setEnabled(String enabled) {
-		this.enabled = enabled;
+	public void setEmailAuthenticated(String emailAuthenticated) {
+		this.emailAuthenticated = emailAuthenticated;
 	}
 
 	public List<Reader> getFriends() {
